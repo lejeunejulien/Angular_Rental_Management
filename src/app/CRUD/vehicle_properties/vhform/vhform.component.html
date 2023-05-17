@@ -1,0 +1,42 @@
+<p>vhform works!</p>
+<form [formGroup]="vh_form">
+
+<label>Mileage</label>
+<br>
+<input type="number" formControlName="mileage">
+
+<br>
+
+<label>Year</label>
+<br>
+<input type="number" formControlName="year">
+
+<br>
+
+<label>Engine power</label>
+<br>
+<input type="number" formControlName="engine_power">
+
+<br>
+
+<label>Category</label>
+<br>
+<input type="number" formControlName="name">
+
+<br>
+
+<label>Supplier</label>
+<br>
+<input type="number" formControlName="name">
+
+<br>
+
+<label>Status</label>
+<br>
+<input type="number" formControlName="name">
+
+<br>
+
+<button (click)="create_properties()">Create</button>
+<button (click)="update_properties()">Update</button>
+</form>

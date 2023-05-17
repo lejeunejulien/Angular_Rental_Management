@@ -14,6 +14,20 @@ import { HomePrestigeVehicleComponent } from './components/home-prestige-vehicle
 import { BookingRequestComponent } from './components/booking-request/booking-request.component';
 import { AllResultsComponent } from './components/all-results/all-results.component';
 
+import { VHFormComponent } from './CRUD/vehicle_properties/vhform/vhform.component';
+import { CategoryVHComponent } from './CRUD/category/category-vh/category-vh.component';
+import { CategoryFormComponent } from './CRUD/category/category-form/category-form.component';
+import { PriceVHComponent } from './CRUD/price/price-vh/price-vh.component';
+import { PriceFormComponent } from './CRUD/price/price-form/price-form.component';
+import { SupplierVHComponent } from './CRUD/supplier/supplier-vh/supplier-vh.component';
+import { SupplierFormComponent } from './CRUD/supplier/supplier-form/supplier-form.component';
+
+import { UserBookingComponent } from './CRUD/user/user-booking/user-booking.component';
+import { UserFormComponent } from './CRUD/user/user-form/user-form.component';
+import { BookingFormComponent } from './CRUD/booking/booking-form/booking-form.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,11 +41,24 @@ import { AllResultsComponent } from './components/all-results/all-results.compon
     HomeTransportVehicleComponent,
     HomePrestigeVehicleComponent,
     BookingRequestComponent,
-    AllResultsComponent
+    AllResultsComponent,
+    BookingFormComponent,
+    VHFormComponent,
+    CategoryVHComponent,
+    CategoryFormComponent,
+    PriceVHComponent,
+    PriceFormComponent,
+    SupplierVHComponent,
+    SupplierFormComponent,
+    UserBookingComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
