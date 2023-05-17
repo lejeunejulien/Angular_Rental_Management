@@ -5,9 +5,10 @@ import { HomeTransportVehicleComponent } from './components/home-transport-vehic
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { VehicleSheetComponent } from './components/vehicle-sheet/vehicle-sheet.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path : "" , redirectTo : "home"},
+  {path : "", component: HomeComponent},
   {path : "home-prestige",component : HomePrestigeVehicleComponent},
   {path : "home-transport", component : HomeTransportVehicleComponent},
   {path : "login",component : LoginComponent},

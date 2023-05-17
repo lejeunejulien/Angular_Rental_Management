@@ -1,0 +1,25 @@
+<p>status works!</p>
+<form [formGroup]="status">
+
+<label>Status</label>
+<br>
+<input type="string" formControlName="status">
+
+<br>
+
+<label>Start date</label>
+<br>
+<input type="datetime-local" formControlName="startDate">
+
+<br>
+
+<label>End date</label>
+<br>
+<input type="datetime-local" formControlName="endDate">
+
+<button (click)="create_status()">Create</button>
+<button (click)="update_status()">Update</button>
+<!-- delete ext-->
+
+</form>
+

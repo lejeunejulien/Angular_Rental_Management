@@ -1,1 +1,25 @@
 <p>category-form works!</p>
+
+<form [formGroup]="category">
+
+  <label>Brand</label>
+  <br>
+  <input type="string" formControlName="brand">
+
+  <br>
+
+  <label>Model</label>
+  <br>
+  <input type="string" formControlName="model">
+
+  <br>
+
+  <label>Price</label>
+  <br>
+  <input type="number" formControlName="idPrice">
+
+  <button (click)="create_category()">Create</button>
+  <button (click)="update_category()">Update</button>
+  <!-- delete ext-->
+
+  </form>

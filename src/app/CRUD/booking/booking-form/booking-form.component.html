@@ -1,1 +1,41 @@
 <p>booking-form works!</p>
+
+<form [formGroup]="booking">
+
+  <label>adress</label>
+  <br>
+  <input type="string" formControlName="adress">
+
+  <br>
+
+  <label>start date</label>
+  <br>
+  <input type="datetime-local" formControlName="startDate">
+
+  <br>
+
+  <label>arrival date</label>
+  <br>
+  <input type="datetime-local" formControlName="arrivalDate">
+
+  <br>
+
+  <label>registered user</label>
+  <br>
+  <input type="number" formControlName="id_registered_user">
+
+  <br>
+
+  <label>vehicle properties</label>
+  <br>
+  <input type="number" formControlName="id_vehicle_properties">
+
+  <br>
+
+  <button (click)="create_booking()">Create</button>
+  <button (click)="update_booking()">Update</button>
+  <!-- delete ext-->
+
+  </form>
+
+

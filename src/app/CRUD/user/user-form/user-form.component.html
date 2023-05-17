@@ -1,1 +1,33 @@
 <p>user-form works!</p>
+
+<form [formGroup]="user">
+
+  <label>last name</label>
+  <br>
+  <input type="string" formControlName="last_name">
+
+  <br>
+
+  <label>first name</label>
+  <br>
+  <input type="string" formControlName="first_name">
+
+  <br>
+
+  <label>username</label>
+  <br>
+  <input type="string" formControlName="username">
+
+  <br>
+
+  <label>password</label>
+  <br>
+  <input type="string" formControlName="password">
+
+  <br>
+
+  <button (click)="create_user()">Create</button>
+  <button (click)="update_user()">Update</button>
+  <!-- delete ext-->
+
+  </form>

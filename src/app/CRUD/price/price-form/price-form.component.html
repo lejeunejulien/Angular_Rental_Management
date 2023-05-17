@@ -1,1 +1,33 @@
 <p>price-form works!</p>
+
+<form [formGroup]="price">
+
+  <label>price day</label>
+  <br>
+  <input type="number" formControlName="price_day">
+
+  <br>
+
+  <label>price week-end</label>
+  <br>
+  <input type="number" formControlName="price_wk">
+
+  <br>
+
+  <label>price month</label>
+  <br>
+  <input type="number" formControlName="price_month">
+
+  <br>
+
+  <label>caution</label>
+  <br>
+  <input type="number" formControlName="caution">
+
+  <br>
+
+  <button (click)="create_price()">Create</button>
+  <button (click)="update_price()">Update</button>
+  <!-- delete ext-->
+
+  </form>

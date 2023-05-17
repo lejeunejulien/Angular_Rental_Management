@@ -1,1 +1,33 @@
 <p>supplier-form works!</p>
+
+<form [formGroup]="supplier">
+
+  <label>name</label>
+  <br>
+  <input type="string" formControlName="name">
+
+  <br>
+
+  <label>adress</label>
+  <br>
+  <input type="string" formControlName="adress">
+
+  <br>
+
+  <label>tel</label>
+  <br>
+  <input type="string" formControlName="tel">
+
+  <br>
+
+  <label>purchase price</label>
+  <br>
+  <input type="number" formControlName="purchase_price">
+
+  <br>
+
+  <button (click)="create_supplier()">Create</button>
+  <button (click)="update_supplier()">Update</button>
+  <!-- delete ext-->
+
+  </form>

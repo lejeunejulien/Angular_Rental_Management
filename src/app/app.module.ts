@@ -26,7 +26,8 @@ import { UserBookingComponent } from './CRUD/user/user-booking/user-booking.comp
 import { UserFormComponent } from './CRUD/user/user-form/user-form.component';
 import { BookingFormComponent } from './CRUD/booking/booking-form/booking-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatusComponent } from './CRUD/status/status.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     SupplierVHComponent,
     SupplierFormComponent,
     UserBookingComponent,
-    UserFormComponent
+    UserFormComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
