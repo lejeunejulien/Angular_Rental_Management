@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
+import { Status_model } from 'src/app/models/status_model';
 import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
 @Component({
@@ -10,33 +11,51 @@ import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/ve
 
 export class VHFormComponent {
 
+  test_status : Status_model = {
+    name : 'julien',
+    description : 'courageux'
+  }
+
 
   vh_form : FormGroup = this._formBuilder.group({
-    mileage : ['',[Validators.required]],
-    year: ['',[Validators.required]],
+    mileage : [0,[Validators.required]],
+    year: [0,[Validators.required]],
     engine_power:[0,[Validators.required, Validators.min(0)]],
-    category:['',[Validators.required]],
-    supplier: ['',[Validators.required]],
-    status:this._formBuilder.array([])
+    idcategory:[0,[Validators.required]],
+    idsupplier: [0,[Validators.required]],
+    status:this._formBuilder.array<number>([])
 
   })
 
 constructor(private __VHService: VehiclePropertiesService, private _formBuilder : FormBuilder ){}
 
 ngOnInit(){
- this.setDefaultData();
+  this.add(this.test_status);
 }
 
-setDefaultData(){
-  this.add("julien", "courageux");
-}
 
+  /*
 add(name="", desc=""){
   let status = this.vh_form.get('status') as FormArray;
   status.push(this._formBuilder.group({
     name : [name],
     description : [desc]
   }));
+
+}
+*/
+add(test : Status_model){
+  /*
+  let status = this.vh_form.get('status') as FormArray;
+  status.push(new FormControl(1));
+  */
+  (<FormArray>this.vh_form.get("status")).push(new FormControl(1));
+
+
+}
+
+new_form(){
+  console.log('data is ',this.vh_form.value)
 }
 
 create_properties() {

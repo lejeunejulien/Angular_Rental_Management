@@ -3,19 +3,19 @@
 
 <label>Mileage</label>
 <br>
-<input type="number" formControlName="mileage">
+<input type="number" formControlName="mileage" value="" required="">
 
 <br>
 
 <label>Year</label>
 <br>
-<input type="number" formControlName="year">
+<input type="number" formControlName="year" value="" required="">
 
 <br>
 
 <label>Engine power</label>
 <br>
-<input type="number" formControlName="engine_power">
+<input type="number" formControlName="engine_power" value="" required="">
 
 <br>
 
@@ -25,7 +25,7 @@
 <!--
 <a routerLink="category"><button>select/create/udpate</button></a>
 -->
-<input type="number" formControlName="idcategory">
+<input type="number" formControlName="idcategory" value="" required="">
 
 <br>
 
@@ -36,7 +36,7 @@
 <a routerLink="supplier"><button>select/create/udpate</button></a>
 -->
 
-<input type="number" formControlName="idsupplier">
+<input type="number" formControlName="idsupplier" value="" required="">
 
 
 <br>
@@ -48,7 +48,8 @@
 <input type="list" formControlName="liststatus">
 -->
 
-<button (click)="add()">add</button>
+<!--
+
 
 <div formArrayName="status" *ngFor="let data of vh_form.get('status')['controls']; let i=index">
   <div [formGroupName]="i">
@@ -56,12 +57,24 @@
     <input type="text" formControlName="description" value="" required="">
   </div>
 </div>
+-->
 
- <!--
-  <a routerLink="status"><button>select/create/udpate</button></a>
- -->
+<!--
+<button (click)="add()">add</button>
+
+-->
+<div formArrayName="status"></div>
 
 
+
+
+
+<a routerLink="status"><button>select/create/udpate</button></a>
+
+
+<br>
+<button (click)="new_form()">New form</button>
+<br>
 
 <!-- buttons désactivés suivant le choix de création ou update dans le menu de départ-->
 <button (click)="create_properties()">Create</button>
