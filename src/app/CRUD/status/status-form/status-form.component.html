@@ -1,0 +1,42 @@
+<p>status-form works!</p>
+
+
+<form [formGroup]="status_form">
+
+  <label>status</label>
+  <br>
+  <input type="string" formControlName="status">
+
+  <br>
+
+  <label>start date</label>
+  <br>
+  <input type="date" formControlName="start_date">
+
+  <br>
+
+  <label>start time</label>
+  <br>
+  <input type="time" formControlName="start_time">
+
+  <br>
+
+  <label>end date</label>
+  <br>
+  <input type="date" formControlName="end_date">
+
+  <br>
+
+  <br>
+
+  <label>end time</label>
+  <br>
+  <input type="time" formControlName="end_time">
+
+  <br>
+
+  <button (click)="create_status()">Create</button>
+  <button (click)="update_status()">Update</button>
+  <!-- delete ext-->
+
+  </form>

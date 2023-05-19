@@ -22,6 +22,9 @@
 <!-- id category-->
 <label>Category</label>
 <br>
+<!--
+<a routerLink="category"><button>select/create/udpate</button></a>
+-->
 <input type="number" formControlName="idcategory">
 
 <br>
@@ -29,19 +32,42 @@
 <!-- id supplier-->
 <label>Supplier</label>
 <br>
+<!--
+<a routerLink="supplier"><button>select/create/udpate</button></a>
+-->
+
 <input type="number" formControlName="idsupplier">
+
 
 <br>
 
 <!-- list vehicle_status-->
 <label>Status</label>
 <br>
-<input type="number" formControlName="liststatus">
+<!--
+<input type="list" formControlName="liststatus">
+-->
 
-<br>
+<button (click)="add()">add</button>
 
+<div formArrayName="status" *ngFor="let data of vh_form.get('status')['controls']; let i=index">
+  <div [formGroupName]="i">
+    <input type="text" formControlName="name" value="" required="">
+    <input type="text" formControlName="description" value="" required="">
+  </div>
+</div>
+
+ <!--
+  <a routerLink="status"><button>select/create/udpate</button></a>
+ -->
+
+
+
+<!-- buttons désactivés suivant le choix de création ou update dans le menu de départ-->
 <button (click)="create_properties()">Create</button>
 <button (click)="update_properties()">Update</button>
 <!-- delete ext-->
 
 </form>
+
+<br>
