@@ -64,6 +64,8 @@ import { StatusFormComponent } from './CRUD/status/status-form/status-form.compo
     FormsModule,
     ReactiveFormsModule,
   ],
+
+
   providers: [],
   bootstrap: [AppComponent]
 })

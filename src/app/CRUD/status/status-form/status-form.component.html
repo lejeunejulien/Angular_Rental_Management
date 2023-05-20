@@ -1,15 +1,24 @@
 <p>status-form works!</p>
 
-<!--
-<div formArrayName="status" *ngFor="let data of vh_form.get('status')['controls']; let i=index">
+<form [formGroup]="status_form">
+
+<button (click)="add()">add</button>
+
+<div formArrayName="test" *ngFor="let data of status_form.get('test')['controls']; let i=index">
   <div [formGroupName]="i">
     <input type="text" formControlName="name" value="" required="">
     <input type="text" formControlName="description" value="" required="">
+    <button (click)="delete(i)">delete</button>
+    <!--
+      <button (click)="update(i)">update</button>
+    -->
   </div>
 </div>
 
--->
+<br>
 
+<button (click)="save()">save</button>
+</form>
 
 
 
@@ -52,8 +61,11 @@
 
 
 
-  <button (click)="create_status()">Create</button>
+
+  <!-- delete ext
+
+   <button (click)="create_status()">Create</button>
   <button (click)="update_status()">Update</button>
-  <!-- delete ext-->
+  -->
 
 

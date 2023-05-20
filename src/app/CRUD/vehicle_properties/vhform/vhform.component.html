@@ -44,12 +44,11 @@
 <!-- list vehicle_status-->
 <label>Status</label>
 <br>
-<!--
-<input type="list" formControlName="liststatus">
--->
+<a routerLink="status/form"><button>select/create/udpate</button></a>
+
+
 
 <!--
-
 
 <div formArrayName="status" *ngFor="let data of vh_form.get('status')['controls']; let i=index">
   <div [formGroupName]="i">
@@ -62,14 +61,8 @@
 <!--
 <button (click)="add()">add</button>
 
--->
 <div formArrayName="status"></div>
-
-
-
-
-
-<a routerLink="status"><button>select/create/udpate</button></a>
+-->
 
 
 <br>

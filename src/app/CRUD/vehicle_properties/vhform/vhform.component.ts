@@ -11,10 +11,15 @@ import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/ve
 
 export class VHFormComponent {
 
-  test_status : Status_model = {
-    name : 'julien',
-    description : 'courageux'
-  }
+//Récupération via getAll
+ test_status : Status_model[]=[{
+  id:1,
+  name:'julien',
+  description:'dsfd'
+ },
+  {id:2,
+  name:'sfdbg',
+  description:'dsfd'}]
 
 
   vh_form : FormGroup = this._formBuilder.group({
@@ -23,13 +28,14 @@ export class VHFormComponent {
     engine_power:[0,[Validators.required, Validators.min(0)]],
     idcategory:[0,[Validators.required]],
     idsupplier: [0,[Validators.required]],
-    status:this._formBuilder.array<number>([])
+    status:this._formBuilder.array<Status_model>([])
 
   })
 
 constructor(private __VHService: VehiclePropertiesService, private _formBuilder : FormBuilder ){}
 
 ngOnInit(){
+  //Affichage des datas existantes (getAll)
   this.add(this.test_status);
 }
 
@@ -44,13 +50,17 @@ add(name="", desc=""){
 
 }
 */
-add(test : Status_model){
+add(test : Status_model[]){
   /*
   let status = this.vh_form.get('status') as FormArray;
   status.push(new FormControl(1));
   */
-  (<FormArray>this.vh_form.get("status")).push(new FormControl(1));
+  //(<FormArray>this.vh_form.get("status")).push(new FormControl(test));
 
+
+  (<FormArray>this.vh_form.get("status")).push(new FormControl(test));
+  //console.log(this.vh_form.value.status) -> [{}]
+  //console.log(this.vh_form.value)  -> {}
 
 }
 
@@ -65,9 +75,6 @@ create_properties() {
 update_properties() {
 throw new Error('Method not implemented.');
 }
-
-
-
 
 
 }
