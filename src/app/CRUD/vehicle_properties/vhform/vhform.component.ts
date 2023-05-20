@@ -14,9 +14,6 @@ export class VHFormComponent {
 
 //Récupération via getAll
 
-test_status : Status_model[]
-
-  /*
  test_status : Status_model[]=[{
   id:1,
   name:'julien',
@@ -25,7 +22,6 @@ test_status : Status_model[]
   {id:2,
   name:'sfdbg',
   description:'dsfd'}]
-  */
 
 
   vh_form : FormGroup = this._formBuilder.group({
@@ -45,14 +41,13 @@ constructor(private __VHService: VehiclePropertiesService,
 ngOnInit(){
   //Affichage des datas existantes (getAll)
   //this.add(this.test_status);
+
   if (this._statusService.getStatus!=null){
     this.add(this._statusService.getStatus())
   }
-  else{
-    this.add(this.test_status)
-  }
-}
 
+  this.add(this.test_status)
+}
 
   /*
 add(name="", desc=""){
