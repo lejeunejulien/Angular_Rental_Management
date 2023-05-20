@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { Status_model } from 'src/app/models/status_model';
+import { StatusService } from 'src/app/services/status/status.service';
 import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
 @Component({
@@ -12,6 +13,10 @@ import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/ve
 export class VHFormComponent {
 
 //Récupération via getAll
+
+test_status : Status_model[]
+
+  /*
  test_status : Status_model[]=[{
   id:1,
   name:'julien',
@@ -20,6 +25,7 @@ export class VHFormComponent {
   {id:2,
   name:'sfdbg',
   description:'dsfd'}]
+  */
 
 
   vh_form : FormGroup = this._formBuilder.group({
@@ -32,11 +38,19 @@ export class VHFormComponent {
 
   })
 
-constructor(private __VHService: VehiclePropertiesService, private _formBuilder : FormBuilder ){}
+constructor(private __VHService: VehiclePropertiesService,
+   private _formBuilder : FormBuilder,
+   private _statusService: StatusService ){}
 
 ngOnInit(){
   //Affichage des datas existantes (getAll)
-  this.add(this.test_status);
+  //this.add(this.test_status);
+  if (this._statusService.getStatus!=null){
+    this.add(this._statusService.getStatus())
+  }
+  else{
+    this.add(this.test_status)
+  }
 }
 
 
@@ -57,7 +71,7 @@ add(test : Status_model[]){
   */
   //(<FormArray>this.vh_form.get("status")).push(new FormControl(test));
 
-
+  (<FormArray>this.vh_form.get("status")).clear();
   (<FormArray>this.vh_form.get("status")).push(new FormControl(test));
   //console.log(this.vh_form.value.status) -> [{}]
   //console.log(this.vh_form.value)  -> {}

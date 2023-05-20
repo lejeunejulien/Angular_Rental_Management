@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Status_model, Status_model2 } from 'src/app/models/status_model';
 import { StatusService } from 'src/app/services/status/status.service';
 
@@ -38,7 +39,8 @@ export class StatusFormComponent {
   ///////////////////////////////////////////////
 
   constructor(private __StatusService: StatusService,
-     private _formBuilder : FormBuilder ){}
+     private _formBuilder : FormBuilder,
+     private _router : Router){}
 
     ngOnInit(){
       this.setDefaultData(this.test_status)
@@ -86,36 +88,18 @@ export class StatusFormComponent {
     status.removeAt(index)
   }
 
-/*
-
-  update(index:number,name="",desc=""){
-    let status = this.status_form.get('test') as FormArray;
-    //let id = status[index].id
-    //status.removeAt(index)
-
-    status.push(this._formBuilder.group({
-      //id : [id],
-      name : [name,Validators.required],
-      description : [desc,Validators.required]
-    }));
-
+  /*
+  update(index:number){
+    let status = this.status_form.get('test').value[index] as FormArray;
   }
-
   */
+
 
   save(){
     console.log('data is ', this.status_form.value.test)
     this.__StatusService.setStatus(this.status_form.value.test)
-  }
+    this._router.navigate(['vehicle_properties'])
 
-
-  //////////////////////////////////////////////////////////
-  update_status() {
-  throw new Error('Method not implemented.');
   }
-  create_status() {
-  throw new Error('Method not implemented.');
-  }
-
 
 }
