@@ -1,14 +1,31 @@
-<p>status-form works!</p>
-
 <form [formGroup]="status_form">
 
 <button (click)="add()">add</button>
 
-<div formArrayName="test" *ngFor="let data of status_form.get('test')['controls']; let i=index">
+<div formArrayName="statusArray" *ngFor="let data of status_form.get('statusArray')['controls']; let i=index">
   <div [formGroupName]="i">
-    <input type="text" formControlName="name" value="" required="">
-    <input type="text" formControlName="description" value="" required="">
+    <label>status</label>
+    <br>
+    <input type="text" formControlName="status" value="" required="">
+    <br>
+
+    <label>start date</label>
+    <br>
+    <input type="datetime-local" formControlName="start_date" value="" required="">
+    <br>
+
+
+    <label>end date</label>
+    <br>
+    <input type="datetime-local" formControlName="end_date" value="" required="">
+    <br>
+
     <button (click)="delete(i)">delete</button>
+    <button (click)="update(i)">update</button>
+    <br>
+    <p>______________</p>
+    <br>
+    <br>
   </div>
 </div>
 
@@ -16,46 +33,6 @@
 
 <button (click)="save()">save</button>
 </form>
-
-
-  <!--
-  <form [formGroup]="status_form">
-  <label>status</label>
-  <br>
-  <input type="string" formControlName="status">
-
-  <br>
-
-  <label>start date</label>
-  <br>
-  <input type="date" formControlName="start_date">
-
-  <br>
-
-  <label>start time</label>
-  <br>
-  <input type="time" formControlName="start_time">
-
-  <br>
-
-  <label>end date</label>
-  <br>
-  <input type="date" formControlName="end_date">
-
-  <br>
-
-  <br>
-
-  <label>end time</label>
-  <br>
-  <input type="time" formControlName="end_time">
-
-  <br>
-    </form>
-  -->
-
-
-
 
   <!-- delete ext
 

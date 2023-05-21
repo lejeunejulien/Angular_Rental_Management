@@ -14,6 +14,7 @@ export class VHFormComponent {
 
 //Récupération via getAll
 
+  /*
  test_status : Status_model[]=[{
   id:1,
   name:'julien',
@@ -22,6 +23,8 @@ export class VHFormComponent {
   {id:2,
   name:'sfdbg',
   description:'dsfd'}]
+
+  */
 
 
   vh_form : FormGroup = this._formBuilder.group({
@@ -46,7 +49,7 @@ ngOnInit(){
     this.add(this._statusService.getStatus())
   }
 
-  this.add(this.test_status)
+ // this.add(this.test_status)
 }
 
   /*

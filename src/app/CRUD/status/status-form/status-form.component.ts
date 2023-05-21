@@ -2,7 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Status_model, Status_model2 } from 'src/app/models/status_model';
+import { Status_model} from 'src/app/models/status_model';
 import { StatusService } from 'src/app/services/status/status.service';
 
 @Component({
@@ -12,28 +12,26 @@ import { StatusService } from 'src/app/services/status/status.service';
 })
 export class StatusFormComponent {
 
+
   //Récupération via getAll
-  test_status : Status_model2[]=[{
-    name:'julien',
-    description:'dsfd'
+  test_status : Status_model[]=[{
+    id:1,
+    status: 'available',
+    start_date:'2001-01-01T00:00',
+    end_date:'2001-01-01T03:00'
    },
     {
-    name:'sfdbg',
-    description:'dsfd'}]
+    id:2,
+    status:'available',
+    start_date:'2001-01-01T00:00',
+    end_date:'2001-01-01T03:00'}]
+
+
 
   ////////////////////////////////////////
 
   status_form : FormGroup = this._formBuilder.group({
-    test : this._formBuilder.array<Status_model2>([]),
-    //test : this._formBuilder.array([]),
-
-    /*
-    status : ['',[Validators.required]],
-    start_date: ['',[Validators.required]],
-    start_time:['',[Validators.required]],
-    end_date: ['',[Validators.required]],
-    end_time:['',[Validators.required]]
-    */
+    statusArray : this._formBuilder.array<Status_model>([]),
   })
 
   ///////////////////////////////////////////////
@@ -44,62 +42,49 @@ export class StatusFormComponent {
 
     ngOnInit(){
       this.setDefaultData(this.test_status)
-      //this.add('julien','lejeune')
     }
 
-
-    idNewStatusFront(test : Status_model[]):number{
-      if(test.length==0){
-        return 1}
-      else{
-        return test[test.length].id }}
-
-
-    setDefaultData(test : Status_model2[]){
+    setDefaultData(test : Status_model[]){
       /*
       let status = this.vh_form.get('status') as FormArray;
       status.push(new FormControl(1));
+      (<FormArray>this.vh_form.get("status")).push(new FormControl(test));
       */
-      //(<FormArray>this.vh_form.get("status")).push(new FormControl(test));
 
-      /*
       for(var i=0;i<test.length;i++){
-        (<FormArray>this.status_form.get("test")).push(new FormControl(test[i]));
-      }
-      */
-      for(var i=0;i<test.length;i++){
-        //console.log(test[i])
-        this.add(test[i].name,test[i].description)
+        this.add(test[i].status,test[i].start_date,test[i].end_date)
       }
     }
 
   ////////////////////////////////////////
 
-  add(name="", desc=""){
-    let status = this.status_form.get('test') as FormArray;
-    status.push(this._formBuilder.group({
-      name : [name,Validators.required],
-      description : [desc,Validators.required]
+  add(status="", start_date="", end_date=""){
+    let new_exist = this.status_form.get('statusArray') as FormArray;
+    new_exist.push(this._formBuilder.group({
+      status : [status,Validators.required],
+      start_date : [start_date,Validators.required],
+      end_date : [end_date,Validators.required],
     }));
+
+    //Service -> creation status db pour avoir id
   }
 
   delete(index:number){
-    let status = this.status_form.get('test') as FormArray;
+    let status = this.status_form.get('StatusArray') as FormArray;
     status.removeAt(index)
   }
 
-  /*
-  update(index:number){
-    let status = this.status_form.get('test').value[index] as FormArray;
-  }
-  */
 
+  update(index:number){
+    //-> Update via dv
+    //let status = this.status_form.get('test').value[index] as FormArray;
+  }
 
   save(){
-    console.log('data is ', this.status_form.value.test)
-    this.__StatusService.setStatus(this.status_form.value.test)
+    //plutôt ok pour quitter pas d'action pour cette fonction
+    console.log('data is ', this.status_form.value.statusArray)
+    this.__StatusService.setStatus(this.status_form.value.statusArray)
     this._router.navigate(['vehicle_properties'])
-
   }
 
 }
