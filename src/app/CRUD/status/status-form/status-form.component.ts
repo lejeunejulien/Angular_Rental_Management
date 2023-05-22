@@ -2,7 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { VehicleDTO, Vehicle_statusDTO } from 'src/app/models/dto';
+import { Vehicle_statusDTO } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
 
 @Component({
@@ -15,8 +15,8 @@ import { StatusService } from 'src/app/services/status/status.service';
 export class StatusFormComponent {
 
   StatusList: Vehicle_statusDTO[]=null
+  form:FormArray
 
-  test: FormArray;
 
   //Récupération via getAll
   test_status : Vehicle_statusDTO[]=[{
@@ -56,6 +56,7 @@ export class StatusFormComponent {
       */
 
       this.setDefaultData(this.test_status)
+
     }
 
     setDefaultData(test : Vehicle_statusDTO[]){
@@ -66,7 +67,7 @@ export class StatusFormComponent {
       */
 
       for(var i=0;i<test.length;i++){
-        this.add(
+        this.add_DefaultData(
           test[i].id,
           test[i].status,
           test[i].start_date,
@@ -74,16 +75,62 @@ export class StatusFormComponent {
       }
     }
 
-  ////////////////////////////////////////
+  ///////////////////////////////////////////////
+  check(index_front:number){
+    let status = this.status_form.get('statusArray').value[index_front].id;
+    if(status!=null){
+      return true
+    }
+    else{
+      return false;
+    }
+    }
 
-  add(id=null,status="", start_date="", end_date=""){
-    let new_exist = this.status_form.get('statusArray') as FormArray;
-    new_exist.push(this._formBuilder.group({
+  request_form(index_front:number){
+    this.form = this.status_form.get('statusArray').value[index_front]
+
+    /*
+    status_form : FormGroup = this._formBuilder.group({
+      statusArray : this._formBuilder.array<Vehicle_statusDTO>([]),
+    })
+    */
+  }
+
+  create(index_front:number){
+    this.form = this.status_form.get('statusArray').value[index_front]
+    console.log(this.form)
+
+  }
+
+  cancel(index_front:number){
+    let status = this.status_form.get('statusArray').value[index_front]
+    status.removeAt(index_front)
+  }
+
+  ////////////////////////////////////
+
+ add_DefaultData(id=null,status="", start_date="", end_date=""){
+
+    this.form = this.status_form.get('statusArray') as FormArray;
+    this.form.push(this._formBuilder.group({
+      //On ajoute id comme info supplémentaire
       id : [id],
+      //On récupère les datas du form du template
       status : [status,Validators.required],
       start_date : [start_date,Validators.required],
       end_date : [end_date,Validators.required],
     }));
+
+
+
+    /*
+    const REQUEST_FORM ={
+      status:[status.status],
+      start_date:[status.start_date],
+      end_date:[status.end_date]
+    }
+
+    */
 
     //Service -> creation status db pour avoir id
   }
@@ -103,16 +150,8 @@ export class StatusFormComponent {
     //Update du back-end
     let status = this.status_form.get('statusArray').value[index_front];
 
-    const REQUEST_FORM_UPDATE ={
-    status:[status.status],
-    start_date:[status.start_date],
-    end_date:[status.end_date]
-  }
-
    //console.log(REQUEST_FORM_UPDATE)
    //Ajouter un message de confirmation avant d'interagir avec la db
-
-
 
   }
 
