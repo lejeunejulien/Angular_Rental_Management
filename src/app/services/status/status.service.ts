@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
-import { VehicleDTO, Vehicle_statusDTO } from 'src/app/models/dto';
+import { VehicleDTO, Vehicle_statusDTO, Vehicle_status_form } from 'src/app/models/dto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,20 +30,27 @@ export class StatusService {
   //Ajouter catchError commun à tous
   //BehaviorSubject à ajouter
 
-  //GetAllVehicleStatus
+  //GetAll
   getAllVehicle_status(): Observable<Vehicle_statusDTO[]>{
     return this._client.get<Vehicle_statusDTO[]>(`${this.BASE_URL}/getall`)
   }
 
-  //Create
-  //public create(form: )
-
 
   //Update
+  update(id:number, form: Vehicle_status_form){
+    return this._client.patch(`${this.BASE_URL}/${id}/update`,form)
+  }
+
+  //Create
+  create(form:  Vehicle_status_form){
+    return this._client.post(`${this.BASE_URL}/add`,form)
+  }
 
 
   //Delete
-
+  delete(id:number){
+    return this._client.delete(`${this.BASE_URL}/${id}/delete`)
+  }
 
 
 }

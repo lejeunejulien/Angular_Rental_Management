@@ -10,9 +10,13 @@ import { StatusService } from 'src/app/services/status/status.service';
   templateUrl: './status-form.component.html',
   styleUrls: ['./status-form.component.scss']
 })
+
+
 export class StatusFormComponent {
 
   StatusList: Vehicle_statusDTO[]=null
+
+  test: FormArray;
 
   //Récupération via getAll
   test_status : Vehicle_statusDTO[]=[{
@@ -26,8 +30,6 @@ export class StatusFormComponent {
     status:'available',
     start_date:'2001-01-01T00:00',
     end_date:'2001-01-01T03:00'}]
-
-
 
   ////////////////////////////////////////
 
@@ -83,29 +85,35 @@ export class StatusFormComponent {
       end_date : [end_date,Validators.required],
     }));
 
-    console.log(this.status_form.get('statusArray'))
-
     //Service -> creation status db pour avoir id
   }
 
-  delete(index:number){
-    let status = this.status_form.get('StatusArray') as FormArray;
+  delete(index_front:number){
+    let status = this.status_form.get('statusArray').value[index_front].id;
+    console.log(status)
 
-
-    status.removeAt(index)
+    //Delete Front
+    //status.removeAt(index)
   }
 
 
   update(index_front:number){
-    //-> Update via db
+    //Update du front est auto
+
+    //Update du back-end
     let status = this.status_form.get('statusArray').value[index_front];
-    console.log(status)
 
-    //Update du Front est auto
+    const REQUEST_FORM_UPDATE ={
+    status:[status.status],
+    start_date:[status.start_date],
+    end_date:[status.end_date]
+  }
 
-    //Update du Back-end
-    //console.log(index_front)
-    //console.log(data)
+   //console.log(REQUEST_FORM_UPDATE)
+   //Ajouter un message de confirmation avant d'interagir avec la db
+
+
+
   }
 
   save(){
