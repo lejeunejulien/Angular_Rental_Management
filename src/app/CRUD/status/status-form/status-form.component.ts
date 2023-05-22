@@ -2,7 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Status_model} from 'src/app/models/status_model';
+import { VehicleDTO, Vehicle_statusDTO } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
 
 @Component({
@@ -12,16 +12,17 @@ import { StatusService } from 'src/app/services/status/status.service';
 })
 export class StatusFormComponent {
 
+  StatusList: Vehicle_statusDTO[]=null
 
   //Récupération via getAll
-  test_status : Status_model[]=[{
-    id:1,
+  test_status : Vehicle_statusDTO[]=[{
+    id:2,
     status: 'available',
     start_date:'2001-01-01T00:00',
     end_date:'2001-01-01T03:00'
    },
     {
-    id:2,
+    id:3,
     status:'available',
     start_date:'2001-01-01T00:00',
     end_date:'2001-01-01T03:00'}]
@@ -31,7 +32,7 @@ export class StatusFormComponent {
   ////////////////////////////////////////
 
   status_form : FormGroup = this._formBuilder.group({
-    statusArray : this._formBuilder.array<Status_model>([]),
+    statusArray : this._formBuilder.array<Vehicle_statusDTO>([]),
   })
 
   ///////////////////////////////////////////////
@@ -41,10 +42,21 @@ export class StatusFormComponent {
      private _router : Router){}
 
     ngOnInit(){
+
+      /*
+      this.__StatusService.getAllVehicle_status()
+      .subscribe(StatusList=>this.StatusList=StatusList)
+
+      if(StatusList!=null){
+        this.setDefaultData(this.StatusList)
+      }
+
+      */
+
       this.setDefaultData(this.test_status)
     }
 
-    setDefaultData(test : Status_model[]){
+    setDefaultData(test : Vehicle_statusDTO[]){
       /*
       let status = this.vh_form.get('status') as FormArray;
       status.push(new FormControl(1));
@@ -52,32 +64,48 @@ export class StatusFormComponent {
       */
 
       for(var i=0;i<test.length;i++){
-        this.add(test[i].status,test[i].start_date,test[i].end_date)
+        this.add(
+          test[i].id,
+          test[i].status,
+          test[i].start_date,
+          test[i].end_date)
       }
     }
 
   ////////////////////////////////////////
 
-  add(status="", start_date="", end_date=""){
+  add(id=null,status="", start_date="", end_date=""){
     let new_exist = this.status_form.get('statusArray') as FormArray;
     new_exist.push(this._formBuilder.group({
+      id : [id],
       status : [status,Validators.required],
       start_date : [start_date,Validators.required],
       end_date : [end_date,Validators.required],
     }));
+
+    console.log(this.status_form.get('statusArray'))
 
     //Service -> creation status db pour avoir id
   }
 
   delete(index:number){
     let status = this.status_form.get('StatusArray') as FormArray;
+
+
     status.removeAt(index)
   }
 
 
-  update(index:number){
-    //-> Update via dv
-    //let status = this.status_form.get('test').value[index] as FormArray;
+  update(index_front:number){
+    //-> Update via db
+    let status = this.status_form.get('statusArray').value[index_front];
+    console.log(status)
+
+    //Update du Front est auto
+
+    //Update du Back-end
+    //console.log(index_front)
+    //console.log(data)
   }
 
   save(){

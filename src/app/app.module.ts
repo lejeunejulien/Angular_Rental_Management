@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatusComponent } from './CRUD/status/status-vh/status.component';
 import { StatusFormComponent } from './CRUD/status/status-form/status-form.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { StatusFormComponent } from './CRUD/status/status-form/status-form.compo
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
 
 

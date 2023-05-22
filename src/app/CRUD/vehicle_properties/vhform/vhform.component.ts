@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
-import { Status_model } from 'src/app/models/status_model';
+import { Vehicle_statusDTO } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
 import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
@@ -33,7 +33,7 @@ export class VHFormComponent {
     engine_power:[0,[Validators.required, Validators.min(0)]],
     idcategory:[0,[Validators.required]],
     idsupplier: [0,[Validators.required]],
-    status:this._formBuilder.array<Status_model>([])
+    status:this._formBuilder.array<Vehicle_statusDTO>([])
 
   })
 
@@ -62,7 +62,7 @@ add(name="", desc=""){
 
 }
 */
-add(test : Status_model[]){
+add(test : Vehicle_statusDTO[]){
   /*
   let status = this.vh_form.get('status') as FormArray;
   status.push(new FormControl(1));

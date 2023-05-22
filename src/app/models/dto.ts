@@ -4,6 +4,7 @@
 
 //Dans le cas du user si "Admin"-> ajouter UserDTO
 export interface VehicleDTO {
+  id:number,
   mileage: number,
   year: number,
   engine_power: number,
@@ -14,12 +15,14 @@ export interface VehicleDTO {
 }
 
 export interface CategoryDTO{
+  id:number,
   brand: number,
   model: string,
   price: PriceDTO
 }
 
 export interface PriceDTO{
+  id :number,
   price_day: number,
   price_weekend: number,
   price_month : number,
@@ -27,6 +30,7 @@ export interface PriceDTO{
 }
 
 export interface SupplierDTO{
+  id : number,
   name: string,
   adress: string,
   tel: string,
@@ -34,12 +38,14 @@ export interface SupplierDTO{
 }
 
 export interface Vehicle_statusDTO{
+  id : number,
   status: string,
   start_date: string,
   end_date: string
 }
 
 export interface BookingDTO{
+  id: number,
   adress: string,
   start_date : string,
   arrival_date: string
@@ -49,6 +55,7 @@ export interface BookingDTO{
 }
 
 export interface UserDTO{
+  id : number,
   last_name: string,
   first_name: string,
   login: string,
