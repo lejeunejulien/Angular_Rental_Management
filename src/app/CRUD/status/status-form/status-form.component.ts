@@ -2,7 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Vehicle_statusDTO } from 'src/app/models/dto';
+import { Vehicle_statusDTO, Vehicle_status_form } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
 
 @Component({
@@ -16,6 +16,8 @@ export class StatusFormComponent {
 
   StatusList: Vehicle_statusDTO[]=null
   form:FormArray
+  DTO:Vehicle_statusDTO
+  id:number
 
 
   //Récupération via getAll
@@ -44,7 +46,10 @@ export class StatusFormComponent {
      private _router : Router){}
 
     ngOnInit(){
+      this.getAll()
+    }
 
+    getAll(){
       /*
       this.__StatusService.getAllVehicle_status()
       .subscribe(StatusList=>this.StatusList=StatusList)
@@ -56,7 +61,6 @@ export class StatusFormComponent {
       */
 
       this.setDefaultData(this.test_status)
-
     }
 
     setDefaultData(test : Vehicle_statusDTO[]){
@@ -76,6 +80,7 @@ export class StatusFormComponent {
     }
 
   ///////////////////////////////////////////////
+
   check(index_front:number){
     let status = this.status_form.get('statusArray').value[index_front].id;
     if(status!=null){
@@ -86,24 +91,32 @@ export class StatusFormComponent {
     }
     }
 
-  request_form(index_front:number){
-    this.form = this.status_form.get('statusArray').value[index_front]
-
-    /*
-    status_form : FormGroup = this._formBuilder.group({
-      statusArray : this._formBuilder.array<Vehicle_statusDTO>([]),
-    })
-    */
+  Request_Form(objet : any){
+    return {
+      status: objet.status,
+      start_date : objet.start_date,
+      end_date : objet.end_date
+    }
   }
 
   create(index_front:number){
-    this.form = this.status_form.get('statusArray').value[index_front]
-    console.log(this.form)
+
+    this.DTO = this.status_form.get('statusArray').value[index_front]
+    console.log(this.Request_Form(this.DTO))
+
+
+    //this.__StatusService.create(this.Request_Form(this.DTO)).subscribe()
+
+    //Mettre les buttons à jour + mettre à jour l'affichage des status dans le template
+    //this.status_form.get('statusArray').removeAt() -> All
+    //this.getAll()
 
   }
 
   cancel(index_front:number){
-    let status = this.status_form.get('statusArray').value[index_front]
+
+    //Annuler la création d'un status
+    let status = this.status_form.get('statusArray') as FormArray
     status.removeAt(index_front)
   }
 
@@ -120,27 +133,18 @@ export class StatusFormComponent {
       start_date : [start_date,Validators.required],
       end_date : [end_date,Validators.required],
     }));
-
-
-
-    /*
-    const REQUEST_FORM ={
-      status:[status.status],
-      start_date:[status.start_date],
-      end_date:[status.end_date]
-    }
-
-    */
-
-    //Service -> creation status db pour avoir id
   }
 
   delete(index_front:number){
-    let status = this.status_form.get('statusArray').value[index_front].id;
-    console.log(status)
+    this.id = this.status_form.get('statusArray').value[index_front].id;
+
+    //Delete Back-end
+    //this.__StatusService.delete(this.id).subscribe()
 
     //Delete Front
-    //status.removeAt(index)
+    let status = this.status_form.get('statusArray') as FormArray
+    status.removeAt(index_front)
+
   }
 
 
@@ -148,16 +152,19 @@ export class StatusFormComponent {
     //Update du front est auto
 
     //Update du back-end
-    let status = this.status_form.get('statusArray').value[index_front];
+    this.DTO = this.status_form.get('statusArray').value[index_front];
+    this.id=this.status_form.get('statusArray').value[index_front].id;
 
-   //console.log(REQUEST_FORM_UPDATE)
+    //this.__StatusService.update(this.id,this.Request_Form(this.DTO)).subscribe()
+
    //Ajouter un message de confirmation avant d'interagir avec la db
 
   }
 
   save(){
     //plutôt ok pour quitter pas d'action pour cette fonction
-    console.log('data is ', this.status_form.value.statusArray)
+    //console.log('data is ', this.status_form.value.statusArray)
+    console.log('data is ', this.status_form)
     this.__StatusService.setStatus(this.status_form.value.statusArray)
     this._router.navigate(['vehicle_properties'])
   }
