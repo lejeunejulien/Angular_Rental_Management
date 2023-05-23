@@ -7,10 +7,21 @@ import { CategoryDTO, Category_form } from 'src/app/models/dto';
 })
 export class CategoryService {
 
+  private categoryUpdate:any|null[]=null
+
   private readonly BASE_URL = "http://localhost:8080/category/"
 
 
   constructor(private readonly _client : HttpClient) { }
+
+  setCategory(test : any){
+    this.categoryUpdate=test
+    console.log(this.categoryUpdate)
+  }
+
+  getCategory():any|null{
+    return this.categoryUpdate
+  }
 
    //GetAll
    getAllVehicle_status(){

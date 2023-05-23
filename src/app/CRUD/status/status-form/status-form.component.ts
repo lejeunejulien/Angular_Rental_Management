@@ -146,9 +146,7 @@ export class StatusFormComponent {
     //Delete Front
     let status = this.status_form.get('statusArray') as FormArray
     status.removeAt(index_front)
-
   }
-
 
   update(index_front:number){
     //Update du front est auto
