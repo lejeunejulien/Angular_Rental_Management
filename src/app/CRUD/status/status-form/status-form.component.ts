@@ -35,6 +35,7 @@ export class StatusFormComponent {
 
   ////////////////////////////////////////
 
+  //Changer Vehicle_statusDTO en Vehicle_status_form
   status_form : FormGroup = this._formBuilder.group({
     statusArray : this._formBuilder.array<Vehicle_statusDTO>([]),
   })
@@ -91,12 +92,11 @@ export class StatusFormComponent {
     }
     }
 
-
   Request_Form(objet : any){
     return {
-      status: objet.status,
-      start_date : objet.start_date,
-      end_date : objet.end_date
+      status: [objet.status],
+      start_date : [objet.start_date],
+      end_date : [objet.end_date]
     }
   }
 

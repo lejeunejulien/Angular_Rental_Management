@@ -33,6 +33,8 @@ export class VHFormComponent {
     engine_power:[0,[Validators.required, Validators.min(0)]],
     idcategory:[0,[Validators.required]],
     idsupplier: [0,[Validators.required]],
+
+    //Pas vehicle_status_DTO -> vehice_status_form
     status:this._formBuilder.array<Vehicle_statusDTO>([])
 
   })
@@ -75,6 +77,15 @@ add(test : Vehicle_statusDTO[]){
   //console.log(this.vh_form.value)  -> {}
 
 }
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////
 
 new_form(){
   console.log('data is ',this.vh_form.value)

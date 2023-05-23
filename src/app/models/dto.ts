@@ -28,15 +28,15 @@ export interface Vehicle_form {
 
 export interface CategoryDTO{
   id:number,
-  brand: number,
+  brand: string,
   model: string,
   price: PriceDTO
 }
 
 export interface Category_form{
-  brand: number,
+  brand: string,
   model: string,
-  price: PriceDTO
+  id_price: number
 }
 
 
