@@ -1,0 +1,30 @@
+<div *ngIf="listVehicleProperties.length==0">
+
+<p>Aucun véhicule enregistré</p>
+<a [routerLink]="['vh_form', null]">Create</a>
+
+</div>
+
+<div *ngIf="listVehicleProperties.length>0">
+
+  <ul>
+    <li *ngFor="let vh of listVehicleProperties">
+      <p>Mileage : {{vh.mileage}}</p>
+      <p>Year : {{vh.year}}</p>
+      <p>Engine power : {{vh.engine_power}}</p>&nbsp;
+      <p>Brand : {{vh.category.brand}}</p>
+      <p>Model : {{vh.category.model}}</p>&nbsp;
+      <p>Supplier : {{vh.supplier.name}}</p>
+
+      <a [routerLink]="['vh_form',vh.id ]">Details</a> &nbsp;
+      <a [routerLink]="['vh_form', vh.id]">Update</a> &nbsp;
+      <a [routerLink]="['vh_form', vh.id]">Delete</a> &nbsp;
+    </li>
+  </ul>
+
+  <a [routerLink]="['vh_form', null]">Create</a>
+
+</div>
+
+
+

@@ -17,55 +17,31 @@
   <input type="number" formControlName="engine_power" value="" required="">
 
   <br>
-
   <!-- id category-->
   <label>Category</label>
   <br>
-  <!--
-  <input type="number" formControlName="idcategory" value="" required="">
-  -->
   <a routerLink="category/form"><button>...</button></a>
 
   <br>
-
   <!-- id supplier-->
   <label>Supplier</label>
   <br>
-  <!--
-  <input type="number" formControlName="idsupplier" value="" required="">
-  -->
   <a routerLink="supplier/form"><button>...</button></a>
 
 
   <br>
-
   <!-- list vehicle_status-->
   <label>Status</label>
   <br>
   <a routerLink="status/form"><button>...</button></a>
 
-
-  <!--
-
-  <div formArrayName="status" *ngFor="let data of vh_form.get('status')['controls']; let i=index">
-    <div [formGroupName]="i">
-      <input type="text" formControlName="name" value="" required="">
-      <input type="text" formControlName="description" value="" required="">
-    </div>
-  </div>
-  -->
-
-  <!--
-  <button (click)="add()">add</button>
-
-  <div formArrayName="status"></div>
-  -->
-
-  <button *ngIf="others==true" (click)="update()">Update</button>
-  <button *ngIf="others==true" (click)="delete()">Update</button>
-  <button *ngIf="others==false" (click)="create()">Update</button>
-
+  <br>
+  <button *ngIf="id!=null" (click)="update()">Update</button>
+  <br>
+  <button *ngIf="id!=null" (click)="delete()">Delete</button>
+  <br>
+  <button *ngIf="id==null" (click)="create()">Create</button>
 
   </form>
 
-  <br>
+

@@ -30,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatusComponent } from './CRUD/status/status-vh/status.component';
 import { StatusFormComponent } from './CRUD/status/status-form/status-form.component';
 import { RouterModule } from '@angular/router';
+import { VhGeneralComponent } from './CRUD/vehicle_properties/vh-general/vh-general.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RouterModule } from '@angular/router';
     UserBookingComponent,
     UserFormComponent,
     StatusComponent,
-    StatusFormComponent
+    StatusFormComponent,
+    VhGeneralComponent
   ],
   imports: [
     BrowserModule,

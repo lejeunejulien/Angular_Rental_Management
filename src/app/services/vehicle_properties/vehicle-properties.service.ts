@@ -19,13 +19,15 @@ export class VehiclePropertiesService {
   //BehaviorSubject à ajouter
 
   //GetAllVehicleProperties
-  public getAllProperties(): Observable<VehicleDTO>{
+  public getAllProperties(): Observable<VehicleDTO[]>{
     return this._client.get<VehicleDTO>(`${this.BASE_URL}/getall`).pipe(
       tap((data: any) => {
         this.vehicle_properties=data;
       })
     )
   }
+
+
 
   //////////////////////////////////////
 

@@ -18,12 +18,15 @@ import { StatusComponent } from './CRUD/status/status-vh/status.component';
 import { PriceVHComponent } from './CRUD/price/price-vh/price-vh.component';
 import { PriceFormComponent } from './CRUD/price/price-form/price-form.component';
 import { StatusFormComponent } from './CRUD/status/status-form/status-form.component';
+import { VhGeneralComponent } from './CRUD/vehicle_properties/vh-general/vh-general.component';
 
 const routes: Routes = [
   //{path : "", component: HomeComponent},
 
   //Pages
-  {path : "", component: VHFormComponent},
+  {path : "", component: VhGeneralComponent},
+  {path : "vh_form/:id", component : VHFormComponent},
+
   {path : "home-prestige",component : HomePrestigeVehicleComponent},
   {path : "home-transport", component : HomeTransportVehicleComponent},
   {path : "login",component : LoginComponent},
