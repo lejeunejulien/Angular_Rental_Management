@@ -7,10 +7,22 @@ import { PriceDTO, Price_form } from 'src/app/models/dto';
 })
 export class PriceService {
 
+  private priceUpdate:any|null[]=null
   private readonly BASE_URL = "http://localhost:8080/price/"
 
 
   constructor(private readonly _client : HttpClient) { }
+
+  setPrice(test: any) {
+    this.priceUpdate=test
+    console.log(this.priceUpdate)
+  }
+
+  getPrice():any|null{
+    return this.priceUpdate
+  }
+
+  ///////////////////
 
    //GetAll
    getAllVehicle_status(){

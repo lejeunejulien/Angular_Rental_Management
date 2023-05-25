@@ -109,7 +109,7 @@ export class CategoryFormComponent {
 ///////////////////////////////////////////////
 
 check(index_front:number){
-  let category = this.category_form.get('categoryArray').value[index_front].id;
+  let category = this.category_form.get('categoryArray').value[index_front].model;
   if(category!=null){
     return true
   }

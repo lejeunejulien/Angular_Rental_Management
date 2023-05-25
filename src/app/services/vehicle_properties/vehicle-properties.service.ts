@@ -11,6 +11,8 @@ export class VehiclePropertiesService {
   private readonly BASE_URL = "http://localhost:8080"
   vehicle_properties: object | undefined;
 
+  vehicleDTO : any|null=null
+
   constructor(private readonly _client : HttpClient) { }
 
   //Ajouter catchError commun à tous
@@ -22,11 +24,16 @@ export class VehiclePropertiesService {
       tap((data: any) => {
         this.vehicle_properties=data;
       })
-
     )
+  }
 
-  //public create(form: )
+  //////////////////////////////////////
 
+  setVehicleDTO(test :any){
+    this.vehicleDTO=test
+  }
 
+  getVehicleDTO():any|null{
+    return this.vehicleDTO
   }
 }

@@ -1,8 +1,7 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Vehicle_statusDTO, Vehicle_status_form } from 'src/app/models/dto';
+import { Vehicle_statusDTO } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
 
 @Component({
@@ -100,11 +99,10 @@ export class StatusFormComponent {
     }
   }
 
-
   create(index_front:number){
 
     this.DTO = this.status_form.get('statusArray').value[index_front]
-    console.log(this.Request_Form(this.DTO))
+    //console.log(this.Request_Form(this.DTO))
 
 
     //this.__StatusService.create(this.Request_Form(this.DTO)).subscribe()
@@ -164,8 +162,9 @@ export class StatusFormComponent {
   save(){
     //plutôt ok pour quitter pas d'action pour cette fonction
     //console.log('data is ', this.status_form.value.statusArray)
-    console.log('data is ', this.status_form)
+    //console.log('data is ', this.status_form.value)
     this.__StatusService.setStatus(this.status_form.value.statusArray)
+    console.log(this.__StatusService.getStatus())
     this._router.navigate(['vehicle_properties'])
   }
 

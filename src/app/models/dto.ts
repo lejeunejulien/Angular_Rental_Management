@@ -18,8 +18,8 @@ export interface Vehicle_form {
   mileage: number,
   year: number,
   engine_power: number,
-  category: CategoryDTO;
-  supplier: SupplierDTO,
+  category: number,
+  supplier: number,
   list_vehicle_status: Vehicle_statusDTO[]
 
 }

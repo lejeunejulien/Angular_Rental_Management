@@ -1,33 +1,42 @@
-<p>supplier-form works!</p>
+<form [formGroup]="supplier_form">
 
-<form [formGroup]="supplier">
+    <div formArrayName="supplierArray" *ngFor="let data of supplier_form.get('supplierArray')['controls']; let i=index">
+      <div [formGroupName]="i">
 
-  <label>name</label>
-  <br>
-  <input type="string" formControlName="name">
+        <label>name</label>
+        <br>
+        <input type="string" formControlName="name">
 
-  <br>
+        <br>
 
-  <label>adress</label>
-  <br>
-  <input type="string" formControlName="adress">
+        <label>adress</label>
+        <br>
+        <input type="string" formControlName="adress">
 
-  <br>
+        <br>
 
-  <label>tel</label>
-  <br>
-  <input type="string" formControlName="tel">
+        <label>tel</label>
+        <br>
+        <input type="string" formControlName="tel">
 
-  <br>
+        <br>
 
-  <label>purchase price</label>
-  <br>
-  <input type="number" formControlName="purchase_price">
+        <label>purchase price</label>
+        <br>
+        <input type="number" formControlName="purchase_price">
 
-  <br>
+        <br>
 
-  <button (click)="create_supplier()">Create</button>
-  <button (click)="update_supplier()">Update</button>
-  <!-- delete ext-->
+        <button *ngIf="existant==true" (click)="delete(i)">delete</button>
+        <button *ngIf="existant==true" (click)="update(i)">update</button>
+        <br>
+        <button *ngIf="existant==false" (click)="create(i)">create</button>
 
-  </form>
+      </div>
+    </div>
+
+    <br>
+
+    <button (click)="save()">save</button>
+      </form>
+

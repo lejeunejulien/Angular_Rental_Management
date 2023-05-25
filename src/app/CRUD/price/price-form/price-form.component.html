@@ -1,33 +1,41 @@
-<p>price-form works!</p>
-
 <form [formGroup]="price">
 
-  <label>price day</label>
-  <br>
-  <input type="number" formControlName="price_day">
+<div formArrayName="priceArray" *ngFor="let data of price.get('priceArray')['controls']; let i=index">
+  <div [formGroupName]="i">
 
-  <br>
+    <label>price day</label>
+    <br>
+    <input type="number" formControlName="price_day">
 
-  <label>price week-end</label>
-  <br>
-  <input type="number" formControlName="price_weekend">
+    <br>
 
-  <br>
+    <label>price week-end</label>
+    <br>
+    <input type="number" formControlName="price_weekend">
 
-  <label>price month</label>
-  <br>
-  <input type="number" formControlName="price_month">
+    <br>
 
-  <br>
+    <label>price month</label>
+    <br>
+    <input type="number" formControlName="price_month">
 
-  <label>caution</label>
-  <br>
-  <input type="number" formControlName="caution">
+    <br>
 
-  <br>
+    <label>caution</label>
+    <br>
+    <input type="number" formControlName="caution">
 
-  <button (click)="create_price()">Create</button>
-  <button (click)="update_price()">Update</button>
-  <!-- delete ext-->
+    <br>
 
+    <button *ngIf="existant==true" (click)="delete(i)">delete</button>
+    <button *ngIf="existant==true" (click)="update(i)">update</button>
+    <br>
+    <button *ngIf="existant==false" (click)="create(i)">create</button>
+
+  </div>
+</div>
+
+<br>
+
+<button (click)="save()">save</button>
   </form>
