@@ -38,6 +38,7 @@ constructor(private __VHService: VehiclePropertiesService,
     mileage: 10000,
     year : 2022,
     engine_power : 300,
+
     category : {
       id : 2,
       brand : 'Peugeot',
@@ -85,6 +86,8 @@ constructor(private __VHService: VehiclePropertiesService,
 //////////////////////////
 
 update(){
+  this._categoryService.setCategory(1)
+
   this.request_update={
     mileage: this.vh_form.get('mileage').value,
     year: this.vh_form.get('year').value,
@@ -93,6 +96,9 @@ update(){
     supplier: this._supplierService.getSupplier(),
     list_vehicle_status: this._statusService.getStatus()
   }
+
+  console.log(this.request_update)
+
  }
 
 
