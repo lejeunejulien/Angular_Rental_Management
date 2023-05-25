@@ -27,11 +27,11 @@ constructor(private __VHService: VehiclePropertiesService,
  private _supplierService: SupplierService,
  private _activatedRoute : ActivatedRoute ){
 
-
+  /*
   if(this.id!=null){
     this.id= parseInt(this._activatedRoute.snapshot.params['id'])
     //this.__VHService.getById(this.id).subscribe(data => this.VehicleDTO = data)
-
+    */
 
     this.VehicleDTO = {
       id : 2,
@@ -66,23 +66,20 @@ constructor(private __VHService: VehiclePropertiesService,
       }]
     }
 
-
-
   this._categoryService.setCategory(this.VehicleDTO.category.id)
   this._supplierService.setSupplier(this.VehicleDTO.supplier.id)
   this._statusService.setStatus(this.VehicleDTO.list_vehicle_status)
 
+  /*
   }
+  */
 
   this.vh_form = this._formBuilder.group({
-    //mileage:this._formBuilder.array<number>([]),
     mileage : [this.VehicleDTO?.mileage,[Validators.required]],
     year: [this.VehicleDTO?.year,[Validators.required]],
     engine_power:[this.VehicleDTO?.engine_power,[Validators.required, Validators.min(0)]],
     idcategory:[this.VehicleDTO?.category.id,[Validators.required]],
     idsupplier: [this.VehicleDTO?.supplier,[Validators.required]],
-
-    //Pas vehicle_status_DTO -> vehice_status_form
     status:this._formBuilder.array<Vehicle_statusDTO>([])
   })
  }
@@ -102,13 +99,15 @@ update(){
   }
  }
 
+ //this.__VHService.update(this.id,this.request_update).subscribe()
+
 
 create(){
-
+  //this.__VHService.create(this.vh_form).subscribe()
 }
 
 delete(){
-  //this.__VHService.delete(this.id)
+  //this.__VHService.delete(this.id).subscribe
 }
 
 }

@@ -5,6 +5,8 @@
 
     <div formArrayName="categoryArray" *ngFor="let data of category_form.get('categoryArray')['controls']; let i=index">
       <div [formGroupName]="i">
+        <label *ngIf="check_selected(i)">delete</label>
+        <br>
         <label>brand</label>
         <br>
         <input type="string" formControlName="brand" value="" required="">
@@ -26,10 +28,10 @@
         -->
 
 
-        <button (click)="Selected(i)">Select</button>
+        <button *ngIf="check_selected(i)==false"(click)="Selection(i)">Select</button>
 
-        <button *ngIf="check(i)==true" (click)="delete(i)">delete</button>
-        <button *ngIf="check(i)===true" (click)="update(i)">update</button>
+        <button *ngIf="check(i)==true && length(i)" (click)="delete(i)">delete</button>
+        <button *ngIf="check(i)===true && length(i)" (click)="update(i)">update</button>
 
         <br>
 

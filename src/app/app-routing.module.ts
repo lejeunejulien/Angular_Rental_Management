@@ -24,7 +24,7 @@ const routes: Routes = [
   //{path : "", component: HomeComponent},
 
   //Pages
-  {path : "", component: VhGeneralComponent},
+  {path : "", component: VHFormComponent},
   {path : "vh_form/:id", component : VHFormComponent},
 
   {path : "home-prestige",component : HomePrestigeVehicleComponent},
@@ -35,7 +35,7 @@ const routes: Routes = [
 
   //Form
   {path : "category", component: CategoryVHComponent},
-  {path : "category/form", component : CategoryFormComponent},
+  {path : "category/form/:id", component : CategoryFormComponent},
 
   {path : "booking", component: BookingFormComponent},
 
