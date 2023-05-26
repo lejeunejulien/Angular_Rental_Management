@@ -1,6 +1,3 @@
-/* Mettre à jour les dates*/
-/* voir avec les dates dans le "datainit"*/
-
 
 //Dans le cas du user si "Admin"-> ajouter UserDTO
 export interface VehicleDTO {

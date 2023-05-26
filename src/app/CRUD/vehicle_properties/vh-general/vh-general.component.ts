@@ -13,9 +13,12 @@ export class VhGeneralComponent {
 
   constructor(private _vehicleService : VehiclePropertiesService){
 
-    /*
-     this._vehicleService.getAllProperties()
-     .subscribe(data => this.listVehicleProperties = data)
+  /*
+  this._vehicleService.getAllProperties()
+  .subscribe(data => this.listVehicleProperties = data)
+
+  console.log(this.listVehicleProperties)
   */
-    }
+
+  }
 }

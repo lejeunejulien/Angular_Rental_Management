@@ -15,10 +15,13 @@ import { ActivatedRoute } from '@angular/router';
 
 export class VHFormComponent {
 
-  id:number
-  request_update : Vehicle_form
-  VehicleDTO : VehicleDTO=null
+  id:number=null
+  request_update : Vehicle_form=null
+  VehicleDTO : VehicleDTO
   vh_form : FormGroup
+
+  id_category : number
+  id_supplier : number
 
 constructor(private __VHService: VehiclePropertiesService,
  private _formBuilder : FormBuilder,
@@ -27,11 +30,17 @@ constructor(private __VHService: VehiclePropertiesService,
  private _supplierService: SupplierService,
  private _activatedRoute : ActivatedRoute ){
 
+  this.id_category=this._categoryService.getCategory()
+  this.id_supplier=this._supplierService.getSupplier()
+
+
+  this.id= parseInt(this._activatedRoute.snapshot.params['id'])
+
   /*
   if(this.id!=null){
-    this.id= parseInt(this._activatedRoute.snapshot.params['id'])
-    //this.__VHService.getById(this.id).subscribe(data => this.VehicleDTO = data)
-    */
+    this.__VHService.getOne(this.id).subscribe(data => this.VehicleDTO = data)
+  }
+  */
 
     this.VehicleDTO = {
       id : 2,
@@ -59,11 +68,16 @@ constructor(private __VHService: VehiclePropertiesService,
         purchase_price : 18000
       },
       list_vehicle_status : [{
-        id : 5,
-        status : 'available',
-        start_date : 'start_date',
-        end_date : 'end_date'
-      }]
+        id:2,
+        status: 'available',
+        start_date:'2001-01-01T00:00',
+        end_date:'2001-01-01T03:00'
+      },
+        {
+        id:3,
+        status:'available',
+        start_date:'2001-01-01T00:00',
+        end_date:'2001-01-01T03:00'}]
     }
 
   this._categoryService.setCategory(this.VehicleDTO.category.id)
@@ -103,7 +117,7 @@ update(){
 
 
 create(){
-  //this.__VHService.create(this.vh_form).subscribe()
+  //this.__VHService.create(this.vh_form.value).subscribe()
 }
 
 delete(){

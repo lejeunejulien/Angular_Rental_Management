@@ -9,11 +9,11 @@ import { VehicleDTO, Vehicle_statusDTO, Vehicle_status_form } from 'src/app/mode
 export class StatusService {
 
   private statusUpdate:Vehicle_statusDTO[]|null
-  private readonly BASE_URL = "http://localhost:8080/status/"
+  private readonly BASE_URL = "http://localhost:8081/status"
 
   constructor(private readonly _client : HttpClient) { }
 
-  setStatus(test: Vehicle_statusDTO[]) {
+  setStatus(test: Vehicle_statusDTO[]|null) {
     this.statusUpdate=test
     //console.log(this.statusUpdate)
   }
@@ -32,7 +32,6 @@ export class StatusService {
   getAllVehicle_status(): Observable<Vehicle_statusDTO[]>{
     return this._client.get<Vehicle_statusDTO[]>(`${this.BASE_URL}/getall`)
   }
-
 
   //Update
   update(id:number, form: Vehicle_status_form){

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle_statusDTO } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
 
@@ -13,28 +13,14 @@ import { StatusService } from 'src/app/services/status/status.service';
 
 export class StatusFormComponent {
 
-  StatusList: Vehicle_statusDTO[]=null
   form:FormArray
   DTO:Vehicle_statusDTO
   id:number
-
-
-  //Récupération via getAll
-  test_status : Vehicle_statusDTO[]=[{
-    id:2,
-    status: 'available',
-    start_date:'2001-01-01T00:00',
-    end_date:'2001-01-01T03:00'
-   },
-    {
-    id:3,
-    status:'available',
-    start_date:'2001-01-01T00:00',
-    end_date:'2001-01-01T03:00'}]
+  ListvehiclestatusDTO : Vehicle_statusDTO [] = null
+  list_length:number[]
 
   ////////////////////////////////////////
 
-  //Changer Vehicle_statusDTO en Vehicle_status_form
   status_form : FormGroup = this._formBuilder.group({
     statusArray : this._formBuilder.array<Vehicle_statusDTO>([]),
   })
@@ -43,43 +29,73 @@ export class StatusFormComponent {
 
   constructor(private __StatusService: StatusService,
      private _formBuilder : FormBuilder,
-     private _router : Router){}
+     private _router : Router,
+     private _activatedRoute : ActivatedRoute){}
 
     ngOnInit(){
-      this.getAll()
+      this.setDefaultData()
     }
 
-    getAll(){
-      /*
-      this.__StatusService.getAllVehicle_status()
-      .subscribe(StatusList=>this.StatusList=StatusList)
 
-      if(StatusList!=null){
-        this.setDefaultData(this.StatusList)
-      }
-
-      */
-
-      this.setDefaultData(this.test_status)
-    }
-
-    setDefaultData(test : Vehicle_statusDTO[]){
+    setDefaultData(){
       /*
       let status = this.vh_form.get('status') as FormArray;
       status.push(new FormControl(1));
       (<FormArray>this.vh_form.get("status")).push(new FormControl(test));
       */
 
-      for(var i=0;i<test.length;i++){
-        this.add_DefaultData(
-          test[i].id,
-          test[i].status,
-          test[i].start_date,
-          test[i].end_date)
-      }
-    }
+      this.ListvehiclestatusDTO=this.__StatusService.getStatus()
+
+      this.id= parseInt(this._activatedRoute.snapshot.params['id'])
+
+      /*
+      this.ListvehiclestatusDTO=[{
+        id:2,
+        status: 'available',
+        start_date:'2001-01-01T00:00',
+        end_date:'2001-01-01T03:00'
+      },
+        {
+        id:3,
+        status:'available',
+        start_date:'2001-01-01T00:00',
+        end_date:'2001-01-01T03:00'}]
+        */
+
+
+        if(this.ListvehiclestatusDTO!=null){
+
+          for(var i=0;i<this.ListvehiclestatusDTO.length;i++){
+            this.add_DefaultData(
+              this.ListvehiclestatusDTO[i].id,
+              this.ListvehiclestatusDTO[i].status,
+              this.ListvehiclestatusDTO[i].start_date,
+              this.ListvehiclestatusDTO[i].end_date)
+          }
+        }
+        }
+
+
+        add_DefaultData(id=null,status="", start_date="", end_date=""){
+
+          this.form = this.status_form.get('statusArray') as FormArray;
+          this.form.push(this._formBuilder.group({
+            //On ajoute id comme info supplémentaire
+            id : [id],
+            //On récupère/insére data
+            status : [status,Validators.required],
+            start_date : [start_date,Validators.required],
+            end_date : [end_date,Validators.required],
+          }));
+        }
+
 
   ///////////////////////////////////////////////
+
+  length(index:number){
+    this.list_length.push(index)
+    return true
+  }
 
   check(index_front:number){
     let status = this.status_form.get('statusArray').value[index_front].id;
@@ -93,23 +109,30 @@ export class StatusFormComponent {
 
   Request_Form(objet : any){
     return {
-      status: [objet.status],
-      start_date : [objet.start_date],
-      end_date : [objet.end_date]
+      status: objet.status,
+      start_date : objet.start_date,
+      end_date : objet.end_date
     }
   }
 
   create(index_front:number){
 
     this.DTO = this.status_form.get('statusArray').value[index_front]
-    //console.log(this.Request_Form(this.DTO))
-
+    console.log(this.Request_Form(this.DTO))
 
     //this.__StatusService.create(this.Request_Form(this.DTO)).subscribe()
 
-    //Mettre les buttons à jour + mettre à jour l'affichage des status dans le template
-    //this.status_form.get('statusArray').removeAt() -> All
-    //this.getAll()
+    //Delete all elements and reload
+    for(var i=0;i<this.list_length.length;i++){
+      let status = this.form.get('statusArray') as FormArray
+      status.removeAt(i)
+    }
+
+    let status = this.form.get('statusArray') as FormArray
+    status.removeAt(index_front)
+
+    //this.setDefaultData()
+
 
   }
 
@@ -122,18 +145,7 @@ export class StatusFormComponent {
 
   ////////////////////////////////////
 
- add_DefaultData(id=null,status="", start_date="", end_date=""){
 
-    this.form = this.status_form.get('statusArray') as FormArray;
-    this.form.push(this._formBuilder.group({
-      //On ajoute id comme info supplémentaire
-      id : [id],
-      //On récupère les datas du form du template
-      status : [status,Validators.required],
-      start_date : [start_date,Validators.required],
-      end_date : [end_date,Validators.required],
-    }));
-  }
 
   delete(index_front:number){
     this.id = this.status_form.get('statusArray').value[index_front].id;

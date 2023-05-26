@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryDTO } from 'src/app/models/dto';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { PriceService } from 'src/app/services/price/price.service';
 
 
 @Component({
@@ -13,12 +14,13 @@ import { CategoryService } from 'src/app/services/category/category.service';
 
 export class CategoryFormComponent {
 
-  ListcategoryDTO : CategoryDTO[]
+  ListcategoryDTO : CategoryDTO[]=[]
   form:FormArray
   DTO:CategoryDTO
   id:number
   selected:number
   list_length:number[]
+  id_price:number
 
   //////////////////////
 
@@ -27,14 +29,17 @@ export class CategoryFormComponent {
   })
 
   constructor(private __CategoryService: CategoryService,
+    private _PriceService: PriceService,
      private _formBuilder : FormBuilder,
      private _router : Router,
-     private _activatedRoute : ActivatedRoute ){}
+     private _activatedRoute : ActivatedRoute ){
+     }
 
      ngOnInit(){
       this.setDefaultData()
-     }
 
+      this.id_price=this._PriceService.getPrice()
+     }
 
      setDefaultData(){
 
@@ -45,9 +50,10 @@ export class CategoryFormComponent {
       */
 
       /*
-      this.__StatusService.getAllVehicle_status()
-      .subscribe(StatusList=>this.StatusList=StatusList)
+      this.__CategoryService.getAllCategory()
+      .subscribe(ListcategoryDTO=>this.ListcategoryDTO=ListcategoryDTO)
       */
+
 
       this.ListcategoryDTO =[{
         id : 2,
@@ -73,9 +79,10 @@ export class CategoryFormComponent {
       },
       ]
 
-      /*
-      if(StatusList!=[]){
-      */
+
+      if(this.ListcategoryDTO.length>0){
+
+
         this.selected= parseInt(this._activatedRoute.snapshot.params['id'])
 
         for(var i=0;i<this.ListcategoryDTO.length;i++){
@@ -86,8 +93,7 @@ export class CategoryFormComponent {
             this.ListcategoryDTO[i].price.id)
         }
       }
-
-      //}
+      }
 
 
     add_DefaultData(id=null, brand="", model="", id_price=null){
@@ -101,7 +107,6 @@ export class CategoryFormComponent {
           id_price : [id_price,Validators.required],
         }));
      }
-
 
 ///////////////////////////////////////////////
 
@@ -134,7 +139,6 @@ length(index:number){
     }
    }
 
-
   Request_Form(objet : any){
     return {
       brand: objet.brand,
@@ -150,7 +154,11 @@ length(index:number){
     this.DTO = this.category_form.get('categoryArray').value[index_front]
     console.log(this.Request_Form(this.DTO))
 
-    //this.__StatusService.create(this.Request_Form(this.DTO)).subscribe()
+    /*
+    this.__CategoryService.create(this.Request_Form(this.DTO)).subscribe((response:any)=>{
+      console.log(response);
+    })
+    */
 
     //Delete all elements and reload
     for(var i=0;i<this.list_length.length;i++){
@@ -177,7 +185,7 @@ length(index:number){
   this.id = this.category_form.get('categoryArray').value[index_front].id;
 
   //Delete Back-end
-  //this.__StatusService.delete(this.id).subscribe()
+  //this.__CategoryService.delete(this.id).subscribe()
 
   //Delete Front
   let category = this.category_form.get('categoryArray') as FormArray
@@ -191,7 +199,7 @@ update(index_front:number){
   this.DTO = this.category_form.get('categoryArray').value[index_front];
   this.id=this.category_form.get('categoryArray').value[index_front].id;
 
-  //this.__StatusService.update(this.id,this.Request_Form(this.DTO)).subscribe()
+  //this.__CategoryService.update(this.id,this.Request_Form(this.DTO)).subscribe()
 
   //Ajouter un message de confirmation avant d'interagir avec la db
 

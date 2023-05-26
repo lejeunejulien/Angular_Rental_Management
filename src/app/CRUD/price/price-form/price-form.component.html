@@ -1,41 +1,34 @@
-<form [formGroup]="price">
-
-<div formArrayName="priceArray" *ngFor="let data of price.get('priceArray')['controls']; let i=index">
-  <div [formGroupName]="i">
+<form [formGroup]="price_form">
 
     <label>price day</label>
     <br>
     <input type="number" formControlName="price_day">
 
     <br>
-
     <label>price week-end</label>
     <br>
     <input type="number" formControlName="price_weekend">
 
     <br>
-
     <label>price month</label>
     <br>
     <input type="number" formControlName="price_month">
 
     <br>
-
     <label>caution</label>
     <br>
     <input type="number" formControlName="caution">
 
     <br>
-
-    <button *ngIf="existant==true" (click)="delete(i)">delete</button>
-    <button *ngIf="existant==true" (click)="update(i)">update</button>
     <br>
-    <button *ngIf="existant==false" (click)="create(i)">create</button>
+    <button *ngIf="id!=null" (click)="update()">Update</button>
+    <br>
+    <button *ngIf="id!=null" (click)="delete()">Delete</button>
+    <br>
+    <button *ngIf="id==null" (click)="create()">Create</button>
 
-  </div>
-</div>
 
 <br>
-
 <button (click)="save()">save</button>
+
   </form>

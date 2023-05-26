@@ -4,6 +4,7 @@
 
 <div formArrayName="statusArray" *ngFor="let data of status_form.get('statusArray')['controls']; let i=index">
   <div [formGroupName]="i">
+
     <label>status</label>
     <br>
     <input type="text" formControlName="status" value="" required="">
@@ -21,11 +22,10 @@
     <br>
 
 
-    <button *ngIf="check(i)==true" (click)="delete(i)">delete</button>
+    <button *ngIf="check(i)==true && length(i)" (click)="delete(i)">delete</button>
     <button *ngIf="check(i)===true" (click)="update(i)">update</button>
 
     <br>
-
     <button *ngIf="check(i)==false" (click)="create(i)">create</button>
     <button *ngIf="check(i)===false" (click)="cancel(i)">cancel</button>
 

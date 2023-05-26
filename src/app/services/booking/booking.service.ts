@@ -8,7 +8,7 @@ import { BookingDTO, Booking_form } from 'src/app/models/dto';
 })
 export class BookingService {
 
-  private readonly BASE_URL = "http://localhost:8080/booking/"
+  private readonly BASE_URL = "http://localhost:8081/booking/"
 
 
   constructor(private readonly _client : HttpClient) { }

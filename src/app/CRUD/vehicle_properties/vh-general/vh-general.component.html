@@ -1,12 +1,11 @@
 <div *ngIf="listVehicleProperties.length==0">
-
 <p>Aucun véhicule enregistré</p>
+<br>
 <a [routerLink]="['vh_form', null]">Create</a>
-
 </div>
 
-<div *ngIf="listVehicleProperties.length>0">
 
+<div *ngIf="listVehicleProperties.length>0">
   <ul>
     <li *ngFor="let vh of listVehicleProperties">
       <p>Mileage : {{vh.mileage}}</p>
@@ -16,13 +15,13 @@
       <p>Model : {{vh.category.model}}</p>&nbsp;
       <p>Supplier : {{vh.supplier.name}}</p>
 
-      <a [routerLink]="['vh_form',vh.id ]">Details</a> &nbsp;
-      <a [routerLink]="['vh_form', vh.id]">Update</a> &nbsp;
-      <a [routerLink]="['vh_form', vh.id]">Delete</a> &nbsp;
+      <a routerLink="/vh_form/vh.id">Details</a> &nbsp;
+      <a routerLink="/vh_form/vh.id">Update</a> &nbsp;
+      <a routerLink="/vh_form/vh.id">Delete</a> &nbsp;
     </li>
   </ul>
 
-  <a [routerLink]="['vh_form', null]">Create</a>
+  <a routerLink="/vh_form/null">Create</a>
 
 </div>
 

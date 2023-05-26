@@ -5,13 +5,11 @@
   <input type="number" formControlName="mileage" value="" required="">
 
   <br>
-
   <label>Year</label>
   <br>
   <input type="number" formControlName="year" value="" required="">
 
   <br>
-
   <label>Engine power</label>
   <br>
   <input type="number" formControlName="engine_power" value="" required="">
@@ -20,15 +18,26 @@
   <!-- id category-->
   <label>Category</label>
   <br>
+  <div *ngIf="VehicleDTO==null">
+    <a routerLink="/category/form/">...</a>
+  </div>
+  <div *ngIf="VehicleDTO!=null">
+    <a routerLink="/category/form/id_category">...</a>
+  </div>
 
-  <a [routerLink]="['category/form',2]">...</a> &nbsp;
 
 
   <br>
   <!-- id supplier-->
   <label>Supplier</label>
   <br>
-  <a routerLink="supplier/form"><button>...</button></a>
+
+  <div *ngIf="VehicleDTO==null">
+    <a routerLink="/supplier/form/">...</a>
+  </div>
+  <div *ngIf="VehicleDTO!=null">
+    <a routerLink="/supplier/form/id_supplier">...</a>
+  </div>
 
 
   <br>
@@ -36,6 +45,7 @@
   <label>Status</label>
   <br>
   <a routerLink="status/form"><button>...</button></a>
+
 
   <br>
   <button *ngIf="id!=null" (click)="update()">Update</button>

@@ -8,12 +8,12 @@ import { SupplierDTO, Supplier_form } from 'src/app/models/dto';
 export class SupplierService {
 
   private supplierUpdate:number|null
-  private readonly BASE_URL = "http://localhost:8080/supplier/"
+  private readonly BASE_URL = "http://localhost:8081/supplier"
 
 
   constructor(private readonly _client : HttpClient) { }
 
-  setSupplier(id: number) {
+  setSupplier(id: number|null) {
     this.supplierUpdate=id
   }
 
@@ -21,8 +21,10 @@ export class SupplierService {
     return this.supplierUpdate
   }
 
+  /////////////////////////////////
+
    //GetAll
-   getAllVehicle_status(){
+   getAllSupplier(){
     return this._client.get<SupplierDTO[]>(`${this.BASE_URL}/getall`)
   }
 

@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { VehicleDTO } from 'src/app/models/dto';
+import { VehicleDTO, Vehicle_form } from 'src/app/models/dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehiclePropertiesService {
 
-  private readonly BASE_URL = "http://localhost:8080"
+  private readonly BASE_URL = "http://localhost:8081/vehicle_properties"
   vehicle_properties: object | undefined;
 
   vehicleDTO : any|null=null
@@ -19,13 +19,33 @@ export class VehiclePropertiesService {
   //BehaviorSubject à ajouter
 
   //GetAllVehicleProperties
-  public getAllProperties(): Observable<VehicleDTO[]>{
-    return this._client.get<VehicleDTO>(`${this.BASE_URL}/getall`).pipe(
-      tap((data: any) => {
-        this.vehicle_properties=data;
-      })
-    )
+  getAllProperties(){
+    return this._client.get<VehicleDTO[]>(`${this.BASE_URL}/getall`)
   }
+
+  //GetOne
+  getOne(id:number){
+    return this._client.get<VehicleDTO>(`${this.BASE_URL}/${id}/getOne`)
+  }
+
+
+  //Update
+  update(id:number, form: Vehicle_form){
+    return this._client.patch(`${this.BASE_URL}/${id}/update`,form)
+  }
+
+  //Create
+  create(form:  Vehicle_form){
+    return this._client.post(`${this.BASE_URL}/add`,form)
+  }
+
+
+  //Delete
+  delete(id:number){
+    return this._client.delete(`${this.BASE_URL}/${id}/delete`)
+  }
+
+
 
 
 

@@ -9,12 +9,12 @@ export class CategoryService {
 
   private categoryUpdate:number|null
 
-  private readonly BASE_URL = "http://localhost:8080/category/"
+  private readonly BASE_URL = "http://localhost:8081/category"
 
 
   constructor(private readonly _client : HttpClient) { }
 
-  setCategory(id : number){
+  setCategory(id : number|null){
     this.categoryUpdate=id
   }
 
@@ -22,8 +22,11 @@ export class CategoryService {
     return this.categoryUpdate
   }
 
-   //GetAll
-   getAllVehicle_status(){
+  ///////////////////////////////////////////////
+
+
+  //GetAll
+   getAllCategory(){
     return this._client.get<CategoryDTO[]>(`${this.BASE_URL}/getall`)
   }
 
@@ -37,7 +40,6 @@ export class CategoryService {
   create(form:  Category_form){
     return this._client.post(`${this.BASE_URL}/add`,form)
   }
-
 
   //Delete
   delete(id:number){
