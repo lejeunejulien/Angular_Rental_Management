@@ -22,12 +22,12 @@
         <label>price</label>
         <br>
 
-        <div *ngIf="id_price!=null">
+        <div *ngIf="id_price!=0">
           <a routerLink="/price/form/id_price">...</a> &nbsp;
         </div>
 
-        <div *ngIf="id_price==null">
-          <a routerLink="/price/form/">...</a> &nbsp;
+        <div *ngIf="id_price==0">
+          <a routerLink="/price/form/0">...</a> &nbsp;
         </div>
 
         <br>

@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PriceDTO } from 'src/app/models/dto';
 import { PriceService } from 'src/app/services/price/price.service';
+import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
 @Component({
   selector: 'app-price-form',
@@ -17,16 +18,18 @@ export class PriceFormComponent {
   existant:boolean=false
   price_form : FormGroup
   PriceDTO : PriceDTO
+  id_vh_properties : number =0
 
   constructor(private __PriceService: PriceService,
+    private _VHService : VehiclePropertiesService,
     private _formBuilder : FormBuilder,
     private _router : Router,
     private _activatedRoute : ActivatedRoute){
 
-    this.id= parseInt(this._activatedRoute.snapshot.params['id'])
+    this.id= parseInt(this._activatedRoute.snapshot.params['id_price'])
 
     /*
-    if(this.id!=null){
+    if(this.id!=0){
       this.__PriceService.getOne(this.id).subscribe(data => this.PriceDTO = data)
     */
 
@@ -63,7 +66,8 @@ export class PriceFormComponent {
 
   save(){
     console.log('data is ', this.price_form)
-    this._router.navigate(['vehicle_properties'])
+    this.id_vh_properties = this._VHService.get_id()
+    this._router.navigate(['vh/id_vh_properties'])
   }
 
 }

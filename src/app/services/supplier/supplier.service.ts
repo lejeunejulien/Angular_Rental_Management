@@ -7,7 +7,7 @@ import { SupplierDTO, Supplier_form } from 'src/app/models/dto';
 })
 export class SupplierService {
 
-  private supplierUpdate:number|null
+  private supplierUpdate:number|null=0
   private readonly BASE_URL = "http://localhost:8081/supplier"
 
 

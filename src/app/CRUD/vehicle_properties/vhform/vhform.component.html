@@ -19,12 +19,11 @@
   <label>Category</label>
   <br>
   <div *ngIf="VehicleDTO==null">
-    <a routerLink="/category/form/">...</a>
+    <a routerLink="/category/form/0/0">...</a>
   </div>
   <div *ngIf="VehicleDTO!=null">
-    <a routerLink="/category/form/id_category">...</a>
+    <a routerLink="/category/form/id_category/id_price">...</a>
   </div>
-
 
 
   <br>
@@ -33,7 +32,7 @@
   <br>
 
   <div *ngIf="VehicleDTO==null">
-    <a routerLink="/supplier/form/">...</a>
+    <a routerLink="/supplier/form/0">...</a>
   </div>
   <div *ngIf="VehicleDTO!=null">
     <a routerLink="/supplier/form/id_supplier">...</a>
@@ -44,15 +43,20 @@
   <!-- list vehicle_status-->
   <label>Status</label>
   <br>
-  <a routerLink="status/form"><button>...</button></a>
+  <div *ngIf="VehicleDTO==null">
+    <a routerLink="/status/form/0">...</a>
+  </div>
+  <div *ngIf="VehicleDTO!=null">
+    <a routerLink="/status/form/list_vehicle_status">...</a>
+  </div>
 
 
   <br>
-  <button *ngIf="id!=null" (click)="update()">Update</button>
+  <button *ngIf="id!=0" (click)="update()">Update</button>
   <br>
-  <button *ngIf="id!=null" (click)="delete()">Delete</button>
+  <button *ngIf="id!=0" (click)="delete()">Delete</button>
   <br>
-  <button *ngIf="id==null" (click)="create()">Create</button>
+  <button *ngIf="id==0" (click)="create()">Create</button>
 
   </form>
 

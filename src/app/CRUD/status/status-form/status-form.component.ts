@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle_statusDTO } from 'src/app/models/dto';
 import { StatusService } from 'src/app/services/status/status.service';
+import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
 @Component({
   selector: 'app-status-form',
@@ -16,8 +17,9 @@ export class StatusFormComponent {
   form:FormArray
   DTO:Vehicle_statusDTO
   id:number
-  ListvehiclestatusDTO : Vehicle_statusDTO [] = null
+  ListvehiclestatusDTO : Vehicle_statusDTO [] = []
   list_length:number[]
+  id_vh_properties : number =0
 
   ////////////////////////////////////////
 
@@ -28,6 +30,7 @@ export class StatusFormComponent {
   ///////////////////////////////////////////////
 
   constructor(private __StatusService: StatusService,
+     private _VHService : VehiclePropertiesService,
      private _formBuilder : FormBuilder,
      private _router : Router,
      private _activatedRoute : ActivatedRoute){}
@@ -38,15 +41,8 @@ export class StatusFormComponent {
 
 
     setDefaultData(){
-      /*
-      let status = this.vh_form.get('status') as FormArray;
-      status.push(new FormControl(1));
-      (<FormArray>this.vh_form.get("status")).push(new FormControl(test));
-      */
 
-      this.ListvehiclestatusDTO=this.__StatusService.getStatus()
-
-      this.id= parseInt(this._activatedRoute.snapshot.params['id'])
+      this.ListvehiclestatusDTO= this._activatedRoute.snapshot.params['ListStatus']
 
       /*
       this.ListvehiclestatusDTO=[{
@@ -63,7 +59,7 @@ export class StatusFormComponent {
         */
 
 
-        if(this.ListvehiclestatusDTO!=null){
+        if(this.ListvehiclestatusDTO.length>0){
 
           for(var i=0;i<this.ListvehiclestatusDTO.length;i++){
             this.add_DefaultData(
@@ -73,7 +69,11 @@ export class StatusFormComponent {
               this.ListvehiclestatusDTO[i].end_date)
           }
         }
+
+        if(this.ListvehiclestatusDTO.length==0){
+          this.add_DefaultData()
         }
+      }
 
 
         add_DefaultData(id=null,status="", start_date="", end_date=""){
@@ -128,11 +128,7 @@ export class StatusFormComponent {
       status.removeAt(i)
     }
 
-    let status = this.form.get('statusArray') as FormArray
-    status.removeAt(index_front)
-
     //this.setDefaultData()
-
 
   }
 
@@ -177,7 +173,9 @@ export class StatusFormComponent {
     //console.log('data is ', this.status_form.value)
     this.__StatusService.setStatus(this.status_form.value.statusArray)
     console.log(this.__StatusService.getStatus())
-    this._router.navigate(['vehicle_properties'])
+
+    this.id_vh_properties=this._VHService.get_id()
+    this._router.navigate(['vh_form/id_vh_properties'])
   }
 
 }

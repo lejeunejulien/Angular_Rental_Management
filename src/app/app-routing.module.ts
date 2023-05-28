@@ -21,10 +21,10 @@ import { StatusFormComponent } from './CRUD/status/status-form/status-form.compo
 import { VhGeneralComponent } from './CRUD/vehicle_properties/vh-general/vh-general.component';
 
 const routes: Routes = [
-  //{path : "", component: HomeComponent},
 
   //Pages
   {path : "", component: VhGeneralComponent},
+  {path : "vh_general", component: VhGeneralComponent},
   {path : "vh_form/:id", component : VHFormComponent},
 
   {path : "home-prestige",component : HomePrestigeVehicleComponent},
@@ -35,7 +35,7 @@ const routes: Routes = [
 
   //Form
   {path : "category", component: CategoryVHComponent},
-  {path : "category/form/:id", component : CategoryFormComponent},
+  {path : "category/form/:id_category/:id_price", component : CategoryFormComponent},
 
   {path : "booking", component: BookingFormComponent},
 
@@ -46,12 +46,10 @@ const routes: Routes = [
   {path : "status/form/:ListStatus", component : StatusFormComponent},
 
   {path : "supplier", component: SupplierVHComponent},
-  {path : "supplier/form/:id", component : SupplierFormComponent},
+  {path : "supplier/form/:id_supplier", component : SupplierFormComponent},
 
   {path : "user", component: UserBookingComponent},
   {path : "user/form", component : UserFormComponent},
-
-  {path : "vehicle_properties", component: VHFormComponent},
 
 ];
 

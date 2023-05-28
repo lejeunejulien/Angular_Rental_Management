@@ -1,5 +1,8 @@
 <form [formGroup]="supplier_form">
 
+  <button (click)="add_DefaultData()">add</button>
+
+
     <div formArrayName="supplierArray" *ngFor="let data of supplier_form.get('supplierArray')['controls']; let i=index">
       <div [formGroupName]="i">
 
@@ -33,6 +36,7 @@
         <button *ngIf="check(i)===true" (click)="update(i)">update</button>
 
         <br>
+
         <button *ngIf="check(i)==false" (click)="create(i)">create</button>
         <button *ngIf="check(i)===false" (click)="cancel(i)">cancel</button>
 

@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SupplierDTO, Supplier_form } from 'src/app/models/dto';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
+import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
 @Component({
   selector: 'app-supplier-form',
@@ -17,6 +18,7 @@ export class SupplierFormComponent {
   selected:number
   list_length:number[]
   ListSupplierDTO : SupplierDTO[]=null
+  id_vh_properties : number =0
 
   supplier_form : FormGroup = this._formBuilder.group({
     supplierArray : this._formBuilder.array<SupplierDTO>([]),
@@ -25,20 +27,18 @@ export class SupplierFormComponent {
 
   constructor(private __SupplierService: SupplierService,
     private _formBuilder : FormBuilder,
+    private _VHService : VehiclePropertiesService,
     private _router : Router,
     private _activatedRoute : ActivatedRoute){
     }
 
     ngOnInit(){
       this.setDefaultData()
+
+      this.selected= parseInt(this._activatedRoute.snapshot.params['id_supplier'])
     }
 
    setDefaultData(){
-      /*
-      let status = this.vh_form.get('status') as FormArray;
-      status.push(new FormControl(1));
-      (<FormArray>this.vh_form.get("status")).push(new FormControl(test));
-      */
 
       /*
       this.__SupplierService.getAllSupplier()
@@ -60,12 +60,8 @@ export class SupplierFormComponent {
       purchase_price : 18000
    }]
 
-   /*
-   if(StatusList!=null){
-    */
-    this.selected= parseInt(this._activatedRoute.snapshot.params['id'])
 
-
+   if(this.ListSupplierDTO.length>0){
       for(var i=0;i<this.ListSupplierDTO.length;i++){
         this.add_DefaultData(
           this.ListSupplierDTO[i].id,
@@ -76,10 +72,12 @@ export class SupplierFormComponent {
       }
     }
 
+    if(this.ListSupplierDTO.length==0){
+      this.add_DefaultData()
+    }
+  }
 
-    // }
-
-    add_DefaultData(id=null,name=null, adress=null, tel=null,purchase_price= null){
+    add_DefaultData(id=null,name="", adress="", tel=null,purchase_price= null){
 
       this.form = this.supplier_form.get('supplierArray') as FormArray;
       this.form.push(this._formBuilder.group({
@@ -148,9 +146,6 @@ export class SupplierFormComponent {
       supplier.removeAt(i)
     }
 
-    let supplier = this.supplier_form.get('supplierArray') as FormArray
-    supplier.removeAt(index_front)
-
     //this.setDefaultData()
   }
 
@@ -189,6 +184,9 @@ export class SupplierFormComponent {
     //console.log('data is ', this.status_form.value.statusArray)
     console.log('data is ', this.supplier_form)
     this.__SupplierService.setSupplier(this.selected)
-    this._router.navigate(['vehicle_properties'])
+    this.id_vh_properties = this._VHService.get_id()
+    this._router.navigate(['vh/id_vh_proerties'])
   }
 }
+
+

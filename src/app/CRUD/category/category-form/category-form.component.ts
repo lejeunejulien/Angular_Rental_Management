@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryDTO } from 'src/app/models/dto';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { PriceService } from 'src/app/services/price/price.service';
+import { VehiclePropertiesService } from 'src/app/services/vehicle_properties/vehicle-properties.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class CategoryFormComponent {
   selected:number
   list_length:number[]
   id_price:number
+  id_vh_properties : number =0
 
   //////////////////////
 
@@ -30,6 +32,7 @@ export class CategoryFormComponent {
 
   constructor(private __CategoryService: CategoryService,
     private _PriceService: PriceService,
+    private _VHService : VehiclePropertiesService,
      private _formBuilder : FormBuilder,
      private _router : Router,
      private _activatedRoute : ActivatedRoute ){
@@ -38,7 +41,7 @@ export class CategoryFormComponent {
      ngOnInit(){
       this.setDefaultData()
 
-      this.id_price=this._PriceService.getPrice()
+      this.id_price== parseInt(this._activatedRoute.snapshot.params['id_price'])
      }
 
      setDefaultData(){
@@ -53,6 +56,8 @@ export class CategoryFormComponent {
       this.__CategoryService.getAllCategory()
       .subscribe(ListcategoryDTO=>this.ListcategoryDTO=ListcategoryDTO)
       */
+
+      this.selected= parseInt(this._activatedRoute.snapshot.params['id_category'])
 
 
       this.ListcategoryDTO =[{
@@ -79,11 +84,7 @@ export class CategoryFormComponent {
       },
       ]
 
-
       if(this.ListcategoryDTO.length>0){
-
-
-        this.selected= parseInt(this._activatedRoute.snapshot.params['id'])
 
         for(var i=0;i<this.ListcategoryDTO.length;i++){
           this.add_DefaultData(
@@ -93,6 +94,11 @@ export class CategoryFormComponent {
             this.ListcategoryDTO[i].price.id)
         }
       }
+
+      if(this.ListcategoryDTO.length==0){
+        this.add_DefaultData()
+      }
+
       }
 
 
@@ -110,15 +116,16 @@ export class CategoryFormComponent {
 
 ///////////////////////////////////////////////
 
-check(index_front:number){
-  let category = this.category_form.get('categoryArray').value[index_front].id;
+check(index_front : number){
+
+let category = this.category_form.get('categoryArray').value[index_front].id;
   if(category!=null){
     return true
   }
   else{
     return false;
   }
-  }
+}
 
 
 length(index:number){
@@ -166,9 +173,6 @@ length(index:number){
       category.removeAt(i)
     }
 
-    let category = this.category_form.get('categoryArray') as FormArray
-    category.removeAt(index_front)
-
     //this.setDefaultData()
 
   }
@@ -208,7 +212,8 @@ update(index_front:number){
  save(){
   console.log('data is ', this.category_form)
   this.__CategoryService.setCategory(this.selected)
-  this._router.navigate(['vehicle_properties'])
+  this.id_vh_properties=this._VHService.get_id()
+  this._router.navigate(['vh/id_vh_properties'])
  }
 
 

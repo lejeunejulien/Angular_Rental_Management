@@ -9,9 +9,16 @@ import { VehicleDTO, Vehicle_form } from 'src/app/models/dto';
 export class VehiclePropertiesService {
 
   private readonly BASE_URL = "http://localhost:8081/vehicle_properties"
-  vehicle_properties: object | undefined;
 
-  vehicleDTO : any|null=null
+  id_vh_properties : number = 0
+
+  get_id(){
+    return this.id_vh_properties
+  }
+
+  set_id(id : number){
+    this.id_vh_properties = id
+  }
 
   constructor(private readonly _client : HttpClient) { }
 
@@ -46,16 +53,4 @@ export class VehiclePropertiesService {
   }
 
 
-
-
-
-  //////////////////////////////////////
-
-  setVehicleDTO(test :any){
-    this.vehicleDTO=test
-  }
-
-  getVehicleDTO():any|null{
-    return this.vehicleDTO
-  }
 }

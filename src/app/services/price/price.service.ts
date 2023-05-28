@@ -7,7 +7,7 @@ import { PriceDTO, Price_form } from 'src/app/models/dto';
 })
 export class PriceService {
 
-  private priceUpdate:number|null=null
+  private priceUpdate:number|null=0
   private readonly BASE_URL = "http://localhost:8081/price"
 
 

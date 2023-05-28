@@ -7,7 +7,7 @@ import { CategoryDTO, Category_form } from 'src/app/models/dto';
 })
 export class CategoryService {
 
-  private categoryUpdate:number|null
+  private categoryUpdate:number|null=0
 
   private readonly BASE_URL = "http://localhost:8081/category"
 

@@ -21,11 +21,11 @@
 
     <br>
     <br>
-    <button *ngIf="id!=null" (click)="update()">Update</button>
+    <button *ngIf="id!=0" (click)="update()">Update</button>
     <br>
-    <button *ngIf="id!=null" (click)="delete()">Delete</button>
+    <button *ngIf="id!=0" (click)="delete()">Delete</button>
     <br>
-    <button *ngIf="id==null" (click)="create()">Create</button>
+    <button *ngIf="id==0" (click)="create()">Create</button>
 
 
 <br>

@@ -8,7 +8,7 @@ import { VehicleDTO, Vehicle_statusDTO, Vehicle_status_form } from 'src/app/mode
 })
 export class StatusService {
 
-  private statusUpdate:Vehicle_statusDTO[]|null
+  private statusUpdate:Vehicle_statusDTO[]|null=[]
   private readonly BASE_URL = "http://localhost:8081/status"
 
   constructor(private readonly _client : HttpClient) { }
