@@ -18,7 +18,6 @@ export class StatusFormComponent {
   DTO:Vehicle_statusDTO
   id:number
   ListvehiclestatusDTO : Vehicle_statusDTO [] = []
-  list_length:number[]
   id_vh_properties : number =0
 
   ////////////////////////////////////////
@@ -42,7 +41,11 @@ export class StatusFormComponent {
 
     setDefaultData(){
 
-      this.ListvehiclestatusDTO= this._activatedRoute.snapshot.params['ListStatus']
+      //console.log(this._activatedRoute.snapshot.data['ListStatus'])
+
+      //this.ListvehiclestatusDTO= this._activatedRoute.snapshot.data['ListStatus']
+      this.ListvehiclestatusDTO = this.__StatusService.getStatus()
+
 
       /*
       this.ListvehiclestatusDTO=[{
@@ -92,10 +95,6 @@ export class StatusFormComponent {
 
   ///////////////////////////////////////////////
 
-  length(index:number){
-    this.list_length.push(index)
-    return true
-  }
 
   check(index_front:number){
     let status = this.status_form.get('statusArray').value[index_front].id;
@@ -122,8 +121,13 @@ export class StatusFormComponent {
 
     //this.__StatusService.create(this.Request_Form(this.DTO)).subscribe()
 
+    /*
+    this._VHService.getOne(this.id)
+    .subscribe(data => this.__StatusService.setStatus(data.list_vehicle_status))
+    */
+
     //Delete all elements and reload
-    for(var i=0;i<this.list_length.length;i++){
+    for(var i=0;i<this.__StatusService.getStatus().length;i++){
       let status = this.form.get('statusArray') as FormArray
       status.removeAt(i)
     }

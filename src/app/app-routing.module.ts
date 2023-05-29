@@ -43,7 +43,7 @@ const routes: Routes = [
   {path : "price/form/:id", component : PriceFormComponent},
 
   {path : "status", component: StatusComponent},
-  {path : "status/form/:ListStatus", component : StatusFormComponent},
+  {path : "status/form", component : StatusFormComponent},
 
   {path : "supplier", component: SupplierVHComponent},
   {path : "supplier/form/:id_supplier", component : SupplierFormComponent},

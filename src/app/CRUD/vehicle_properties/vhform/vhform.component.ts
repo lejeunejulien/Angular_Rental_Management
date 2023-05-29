@@ -17,7 +17,48 @@ export class VHFormComponent {
 
   id:number=null
   request_update : Vehicle_form=null
-  VehicleDTO : VehicleDTO = null
+  //VehicleDTO : VehicleDTO
+
+
+  VehicleDTO = {
+    id : 2,
+    mileage: 10000,
+    year : 2022,
+    engine_power : 300,
+
+    category : {
+      id : 2,
+      brand : 'Peugeot',
+      model : '308',
+      price : {
+        id : 3,
+        price_day : 50,
+        price_weekend : 200,
+        price_month : 1000,
+        caution : 1500
+      }
+    },
+    supplier : {
+      id :4,
+      name : 'julien',
+      adress : 'liege',
+      tel : '13',
+      purchase_price : 18000
+    },
+    list_vehicle_status : [{
+      id:2,
+      status: 'available',
+      start_date:'2008-01-01T00:00',
+      end_date:'2001-01-01T03:00'
+    },
+      {
+      id:3,
+      status:'available',
+      start_date:'2001-01-01T00:00',
+      end_date:'2001-01-01T03:00'}]
+  }
+
+
   vh_form : FormGroup
 
   id_category : number = null
@@ -38,7 +79,7 @@ constructor(private __VHService: VehiclePropertiesService,
 
   /*
   if(this.id!=0){
-    this.__VHService.getOne(this.id)
+    this._VHService.getOne(this.id)
     .subscribe(data => this.VehicleDTO = data)
 
     this.id_category=this.VehicleDTO.category.id
@@ -48,43 +89,8 @@ constructor(private __VHService: VehiclePropertiesService,
   }
   */
 
-    this.VehicleDTO = {
-      id : 2,
-      mileage: 10000,
-      year : 2022,
-      engine_power : 300,
+  this._statusService.setStatus(this.VehicleDTO.list_vehicle_status)
 
-      category : {
-        id : 2,
-        brand : 'Peugeot',
-        model : '308',
-        price : {
-          id : 3,
-          price_day : 50,
-          price_weekend : 200,
-          price_month : 1000,
-          caution : 1500
-        }
-      },
-      supplier : {
-        id :4,
-        name : 'julien',
-        adress : 'liege',
-        tel : '13',
-        purchase_price : 18000
-      },
-      list_vehicle_status : [{
-        id:2,
-        status: 'available',
-        start_date:'2001-01-01T00:00',
-        end_date:'2001-01-01T03:00'
-      },
-        {
-        id:3,
-        status:'available',
-        start_date:'2001-01-01T00:00',
-        end_date:'2001-01-01T03:00'}]
-    }
 
 
   this.vh_form = this._formBuilder.group({

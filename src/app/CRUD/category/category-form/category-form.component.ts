@@ -20,7 +20,6 @@ export class CategoryFormComponent {
   DTO:CategoryDTO
   id:number
   selected:number
-  list_length:number[]
   id_price:number
   id_vh_properties : number =0
 
@@ -74,8 +73,8 @@ export class CategoryFormComponent {
       },
       {
         id:3,
-        brand: 'available',
-        model:'Mercedes',
+        brand: 'Mercedes',
+        model:'GLS',
         price: {id :4,
           price_day: 60,
           price_weekend: 300,
@@ -128,11 +127,6 @@ let category = this.category_form.get('categoryArray').value[index_front].id;
 }
 
 
-length(index:number){
-  this.list_length.push(index)
-  return true
-}
-
   Selection(index_front:number){
     this.selected=this.category_form.get('categoryArray').value[index_front].id
    }
@@ -167,8 +161,13 @@ length(index:number){
     })
     */
 
+    /*
+    this.__CategoryService.getAllCategory()
+    .subscribe(ListcategoryDTO=>this.ListcategoryDTO=ListcategoryDTO)
+    */
+
     //Delete all elements and reload
-    for(var i=0;i<this.list_length.length;i++){
+    for(var i=0;i<this.ListcategoryDTO.length;i++){
       let category = this.category_form.get('categoryArray') as FormArray
       category.removeAt(i)
     }
@@ -213,7 +212,7 @@ update(index_front:number){
   console.log('data is ', this.category_form)
   this.__CategoryService.setCategory(this.selected)
   this.id_vh_properties=this._VHService.get_id()
-  this._router.navigate(['vh/id_vh_properties'])
+  this._router.navigate(['vh_form/id_vh_properties'])
  }
 
 

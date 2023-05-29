@@ -104,10 +104,7 @@ export class SupplierFormComponent {
       }
 
 
-    length(index:number){
-      this.list_length.push(index)
-      return true
-    }
+
 
       Selection(index_front:number){
         this.selected=this.supplier_form.get('supplierArray').value[index_front].id
@@ -140,8 +137,13 @@ export class SupplierFormComponent {
 
     //this.__SupplierService.create(this.Request_Form(this.DTO)).subscribe()
 
+    /*
+      this.__SupplierService.getAllSupplier()
+      .subscribe(ListSupplierDTO=>this.ListSupplierDTO= ListSupplierDTO)
+      */
+
     //Delete all elements and reload
-    for(var i=0;i<this.list_length.length;i++){
+    for(var i=0;i<this.ListSupplierDTO.length;i++){
       let supplier = this.supplier_form.get('supplierArray') as FormArray
       supplier.removeAt(i)
     }
@@ -185,7 +187,7 @@ export class SupplierFormComponent {
     console.log('data is ', this.supplier_form)
     this.__SupplierService.setSupplier(this.selected)
     this.id_vh_properties = this._VHService.get_id()
-    this._router.navigate(['vh/id_vh_proerties'])
+    this._router.navigate(['vh_form/id_vh_proerties'])
   }
 }
 

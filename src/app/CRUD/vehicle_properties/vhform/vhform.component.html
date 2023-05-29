@@ -43,14 +43,14 @@
   <!-- list vehicle_status-->
   <label>Status</label>
   <br>
-  <div *ngIf="VehicleDTO==null">
-    <a routerLink="/status/form/0">...</a>
-  </div>
-  <div *ngIf="VehicleDTO!=null">
-    <a routerLink="/status/form/list_vehicle_status">...</a>
-  </div>
+
+  <!--
+  <a routerLink="/status/form/list_vehicle_status">...</a>
+  -->
+  <a routerLink="/status/form">...</a>
 
 
+  <br>
   <br>
   <button *ngIf="id!=0" (click)="update()">Update</button>
   <br>

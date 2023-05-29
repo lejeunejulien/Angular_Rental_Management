@@ -67,7 +67,7 @@ export class PriceFormComponent {
   save(){
     console.log('data is ', this.price_form)
     this.id_vh_properties = this._VHService.get_id()
-    this._router.navigate(['vh/id_vh_properties'])
+    this._router.navigate(['vh_form/id_vh_properties'])
   }
 
 }
