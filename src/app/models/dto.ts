@@ -138,5 +138,12 @@ export interface User_form{
 export interface AuthDTO{
   username : string,
   token : string
+  id_user : number
+  role : string
+}
+
+export interface LoginForm{
+  username : string,
+  password : string
 }
 

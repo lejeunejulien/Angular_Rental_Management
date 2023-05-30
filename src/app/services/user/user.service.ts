@@ -13,8 +13,14 @@ export class UserService {
   constructor(private readonly _client : HttpClient) { }
 
    //GetAll
-   getAllVehicle_status(){
+   getAllUser(){
     return this._client.get<UserDTO[]>(`${this.BASE_URL}/getall`)
+  }
+
+
+  //GetOne
+  getOne(id : number){
+    return this._client.get<UserDTO>(`${this.BASE_URL}/${id}/getone`)
   }
 
 
