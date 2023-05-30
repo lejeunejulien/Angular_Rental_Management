@@ -18,10 +18,10 @@
   <!-- id category-->
   <label>Category</label>
   <br>
-  <div *ngIf="VehicleDTO==null">
+  <div *ngIf="id==0">
     <a routerLink="/category/form/0/0">...</a>
   </div>
-  <div *ngIf="VehicleDTO!=null">
+  <div *ngIf="id!=0">
     <a routerLink="/category/form/id_category/id_price">...</a>
   </div>
 
@@ -31,10 +31,10 @@
   <label>Supplier</label>
   <br>
 
-  <div *ngIf="VehicleDTO==null">
+  <div *ngIf="id==0">
     <a routerLink="/supplier/form/0">...</a>
   </div>
-  <div *ngIf="VehicleDTO!=null">
+  <div *ngIf="id!=0">
     <a routerLink="/supplier/form/id_supplier">...</a>
   </div>
 

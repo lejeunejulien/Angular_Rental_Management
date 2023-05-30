@@ -1,7 +1,8 @@
+
 <div *ngIf="listVehicleProperties.length==0">
 <p>Aucun véhicule enregistré</p>
 <br>
-<a routerLink="/vh_form/2">Create</a>
+<button (click)="RedirectTo_Vehicles_Properties(0)">Create</button>
 </div>
 
 
@@ -15,13 +16,20 @@
       <p>Model : {{vh.category.model}}</p>&nbsp;
       <p>Supplier : {{vh.supplier.name}}</p>
 
+      <!--
       <a routerLink="/vh_form/vh.id">Details</a> &nbsp;
       <a routerLink="/vh_form/vh.id">Update</a> &nbsp;
       <a routerLink="/vh_form/vh.id">Delete</a> &nbsp;
+      -->
+
+      <button (click)="RedirectTo_Vehicles_Properties(vh.id)">Details</button>
+      <button (click)="RedirectTo_Vehicles_Properties(vh.id)">Update</button>
+      <button (click)="RedirectTo_Vehicles_Properties(vh.id)">Delete</button>
     </li>
   </ul>
 
-  <a routerLink="/vh_form">Create</a>
+  <button (click)="RedirectTo_Vehicles_Properties(0)">Create</button>
+
 
 </div>
 

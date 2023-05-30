@@ -1,6 +1,5 @@
 
-//Dans le cas du user si "Admin"-> ajouter UserDTO
-export interface VehicleDTO {
+export interface Vehicle_propertiesDTO {
   id:number,
   mileage: number,
   year: number,
@@ -15,9 +14,9 @@ export interface Vehicle_form {
   mileage: number,
   year: number,
   engine_power: number,
-  category: number,
-  supplier: number,
-  list_vehicle_status: Vehicle_statusDTO[]
+  id_category: number,
+  id_supplier: number,
+  list_status_vehicle: Vehicle_status_form[]
 
 }
 
@@ -44,7 +43,7 @@ export interface PriceDTO{
   price_day: number,
   price_weekend: number,
   price_month : number,
-  caution: number,
+  caution: number
 }
 
 
@@ -52,7 +51,7 @@ export interface Price_form{
   price_day: number,
   price_weekend: number,
   price_month : number,
-  caution: number,
+  caution: number
 }
 
 //////////////////////////////
@@ -96,17 +95,26 @@ export interface BookingDTO{
   adress: string,
   start_date : string,
   arrival_date: string
-  registered_user: UserDTO,
-  vehicle_properties: VehicleDTO
+  userDTO: UserDTO,
+  Vehicle_propertiesDTO_User: vehicle_propertiesDTO_user
 
 }
+
+export interface vehicle_propertiesDTO_user{
+  id : number,
+  mileage : number,
+  year : number,
+  engine_power : number,
+  category : CategoryDTO
+}
+
 
 export interface Booking_form{
   adress: string,
   start_date : string,
   arrival_date: string
-  registered_user: UserDTO,
-  vehicle_properties: VehicleDTO
+  id_registered_user: number,
+  id_vehicle_properties: number
 
 }
 
@@ -115,10 +123,7 @@ export interface Booking_form{
 
 export interface UserDTO{
   id : number,
-  last_name: string,
-  first_name: string,
-  login: string,
-  password: string
+  username: string
 }
 
 
@@ -126,7 +131,12 @@ export interface UserDTO{
 export interface User_form{
   last_name: string,
   first_name: string,
-  login: string,
+  username: string,
   password: string
+}
+
+export interface AuthDTO{
+  username : string,
+  token : string
 }
 

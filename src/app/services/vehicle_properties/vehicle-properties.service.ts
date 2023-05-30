@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { VehicleDTO, Vehicle_form } from 'src/app/models/dto';
+import { Vehicle_form, Vehicle_propertiesDTO } from 'src/app/models/dto';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class VehiclePropertiesService {
   private readonly BASE_URL = "http://localhost:8081/vehicle_properties"
 
   id_vh_properties : number = 0
+  vehicle_properties : Vehicle_propertiesDTO | null
 
   get_id(){
     return this.id_vh_properties
@@ -20,6 +21,15 @@ export class VehiclePropertiesService {
     this.id_vh_properties = id
   }
 
+
+  get_vehicle_properties(){
+    return this.vehicle_properties
+  }
+
+  set_vehicle_properties(vehicle :  Vehicle_propertiesDTO){
+    this.vehicle_properties = vehicle
+  }
+
   constructor(private readonly _client : HttpClient) { }
 
   //Ajouter catchError commun à tous
@@ -27,12 +37,12 @@ export class VehiclePropertiesService {
 
   //GetAllVehicleProperties
   getAllProperties(){
-    return this._client.get<VehicleDTO[]>(`${this.BASE_URL}/getall`)
+    return this._client.get<Vehicle_propertiesDTO[]>(`${this.BASE_URL}/getall`)
   }
 
   //GetOne
   getOne(id:number){
-    return this._client.get<VehicleDTO>(`${this.BASE_URL}/${id}/getOne`)
+    return this._client.get<Vehicle_propertiesDTO>(`${this.BASE_URL}/${id}/getOne`)
   }
 
 

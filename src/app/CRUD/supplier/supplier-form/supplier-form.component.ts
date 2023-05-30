@@ -137,10 +137,6 @@ export class SupplierFormComponent {
 
     //this.__SupplierService.create(this.Request_Form(this.DTO)).subscribe()
 
-    /*
-      this.__SupplierService.getAllSupplier()
-      .subscribe(ListSupplierDTO=>this.ListSupplierDTO= ListSupplierDTO)
-      */
 
     //Delete all elements and reload
     for(var i=0;i<this.ListSupplierDTO.length;i++){

@@ -21,7 +21,7 @@ export class CategoryFormComponent {
   id:number
   selected:number
   id_price:number
-  id_vh_properties : number =0
+  id_vh_properties : number = 0
 
   //////////////////////
 
@@ -45,6 +45,8 @@ export class CategoryFormComponent {
 
      setDefaultData(){
 
+      this.selected= parseInt(this._activatedRoute.snapshot.params['id_category'])
+
       /*
       let status = this.vh_form.get('status') as FormArray;
       status.push(new FormControl(1));
@@ -55,8 +57,6 @@ export class CategoryFormComponent {
       this.__CategoryService.getAllCategory()
       .subscribe(ListcategoryDTO=>this.ListcategoryDTO=ListcategoryDTO)
       */
-
-      this.selected= parseInt(this._activatedRoute.snapshot.params['id_category'])
 
 
       this.ListcategoryDTO =[{
@@ -159,11 +159,6 @@ let category = this.category_form.get('categoryArray').value[index_front].id;
     this.__CategoryService.create(this.Request_Form(this.DTO)).subscribe((response:any)=>{
       console.log(response);
     })
-    */
-
-    /*
-    this.__CategoryService.getAllCategory()
-    .subscribe(ListcategoryDTO=>this.ListcategoryDTO=ListcategoryDTO)
     */
 
     //Delete all elements and reload

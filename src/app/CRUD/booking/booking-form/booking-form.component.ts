@@ -28,7 +28,6 @@ export class BookingFormComponent {
 
   create(){
       //this._BookingService.create(this.booking_form.value).subscribe()
-
   }
 
   save(){

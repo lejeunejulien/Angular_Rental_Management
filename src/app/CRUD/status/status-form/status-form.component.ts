@@ -18,7 +18,7 @@ export class StatusFormComponent {
   DTO:Vehicle_statusDTO
   id:number
   ListvehiclestatusDTO : Vehicle_statusDTO [] = []
-  id_vh_properties : number =0
+  id_vh_properties : number = 0
 
   ////////////////////////////////////////
 
@@ -43,7 +43,6 @@ export class StatusFormComponent {
 
       //console.log(this._activatedRoute.snapshot.data['ListStatus'])
 
-      //this.ListvehiclestatusDTO= this._activatedRoute.snapshot.data['ListStatus']
       this.ListvehiclestatusDTO = this.__StatusService.getStatus()
 
 
@@ -121,19 +120,19 @@ export class StatusFormComponent {
 
     //this.__StatusService.create(this.Request_Form(this.DTO)).subscribe()
 
-    /*
-    this._VHService.getOne(this.id)
-    .subscribe(data => this.__StatusService.setStatus(data.list_vehicle_status))
-    */
-
     //Delete all elements and reload
     for(var i=0;i<this.__StatusService.getStatus().length;i++){
       let status = this.form.get('statusArray') as FormArray
       status.removeAt(i)
     }
 
-    //this.setDefaultData()
-
+    /*
+    this._VHService.getOne(this.id)
+    .subscribe(data =>{
+      this.__StatusService.setStatus(data.list_vehicle_status),
+      })
+    */
+      //this.setDefaultData()
   }
 
   cancel(index_front:number){
@@ -167,15 +166,12 @@ export class StatusFormComponent {
 
     //this.__StatusService.update(this.id,this.Request_Form(this.DTO)).subscribe()
 
-   //Ajouter un message de confirmation avant d'interagir avec la db
+    //Ajouter un message de confirmation avant d'interagir avec la db
 
   }
 
   save(){
-    //plutôt ok pour quitter pas d'action pour cette fonction
-    //console.log('data is ', this.status_form.value.statusArray)
-    //console.log('data is ', this.status_form.value)
-    this.__StatusService.setStatus(this.status_form.value.statusArray)
+    //this.__StatusService.setStatus(this.status_form.value.statusArray)
     console.log(this.__StatusService.getStatus())
 
     this.id_vh_properties=this._VHService.get_id()
