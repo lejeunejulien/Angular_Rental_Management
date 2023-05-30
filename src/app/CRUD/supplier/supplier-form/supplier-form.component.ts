@@ -180,10 +180,17 @@ export class SupplierFormComponent {
   save(){
     //plutôt ok pour quitter pas d'action pour cette fonction
     //console.log('data is ', this.status_form.value.statusArray)
-    console.log('data is ', this.supplier_form)
+    console.log('data is ', this.supplier_form.value)
     this.__SupplierService.setSupplier(this.selected)
     this.id_vh_properties = this._VHService.get_id()
-    this._router.navigate(['vh_form/id_vh_proerties'])
+
+    this._router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+      }
+      this._router.onSameUrlNavigation = 'reload';
+
+    //this._router.navigateByUrl("/vh_form/" + this.id)
+    this._router.navigateByUrl("/vh_form/" + this.id_vh_properties)
   }
 }
 

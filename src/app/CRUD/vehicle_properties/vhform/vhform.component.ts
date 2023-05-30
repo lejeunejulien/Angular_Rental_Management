@@ -69,7 +69,7 @@ update(){
   }
 
   this.__VHService.update(this.id,this.request_update)
-  .subscribe(() => this._router.navigate(['vh_general']))
+  .subscribe(() => this._router.navigate(['/vh_general']))
 
 
  }
@@ -78,13 +78,22 @@ update(){
 create(){
 
   this.__VHService.create(this.vh_form.value)
-  .subscribe(()=>this._router.navigate(['vh_general']))
+  .subscribe(()=>this._router.navigate(['/vh_general']))
 
 }
 
 delete(){
+
+  this._router.navigate(['/vh_general'])
+
+  /*
+
   this.__VHService.delete(this.id)
-  .subscribe(()=>this._router.navigate(['vh_general']))
+  .subscribe(()=>this._router.navigate(['/vh_general']))
+
+  */
+
 }
+
 
 }

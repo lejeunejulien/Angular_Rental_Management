@@ -18,7 +18,7 @@ export class PriceFormComponent {
   existant:boolean=false
   price_form : FormGroup
   PriceDTO : PriceDTO
-  id_vh_properties : number =0
+  id_vh_properties : number=0
 
   constructor(private __PriceService: PriceService,
     private _VHService : VehiclePropertiesService,
@@ -34,16 +34,16 @@ export class PriceFormComponent {
     */
 
     this.PriceDTO ={
-      id :3,
-      price_day: 50,
-      price_weekend: 200,
+      id : 3,
+      price_day : 50,
+      price_weekend : 200,
       price_month : 1000,
-      caution: 800
+      caution : 1500
    }
 
     this.price_form = this._formBuilder.group({
       price_day : [this.PriceDTO?.price_day,Validators.required],
-      price_week_end : [this.PriceDTO?.price_weekend,Validators.required],
+      price_weekend : [this.PriceDTO?.price_weekend,Validators.required],
       price_month : [this.PriceDTO?.price_month,Validators.required],
       caution:[this.PriceDTO?.caution,Validators.required]
       })
@@ -65,9 +65,17 @@ export class PriceFormComponent {
   }
 
   save(){
-    console.log('data is ', this.price_form)
+    console.log('data is ', this.price_form.value)
     this.id_vh_properties = this._VHService.get_id()
-    this._router.navigate(['vh_form/id_vh_properties'])
+
+    this._router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+      }
+      this._router.onSameUrlNavigation = 'reload';
+
+    //this._router.navigateByUrl("/vh_form/" + this.id)
+    this._router.navigateByUrl("/vh_form/" + this.id_vh_properties)
+
   }
 
 }

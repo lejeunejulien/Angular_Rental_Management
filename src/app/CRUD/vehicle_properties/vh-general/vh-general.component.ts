@@ -99,6 +99,7 @@ export class VhGeneralComponent {
 
 
       this._vehicleService.set_vehicle_properties(this.VehicleDTO)
+      this._statusService.setStatus(this.VehicleDTO.list_vehicle_status)
 
 
       this._router.routeReuseStrategy.shouldReuseRoute = () => {
@@ -106,7 +107,9 @@ export class VhGeneralComponent {
         }
         this._router.onSameUrlNavigation = 'reload';
 
-      this._router.navigateByUrl("/vh_form/" + this.id)
+      //this._router.navigateByUrl("/vh_form/" + this.id)
+      this._router.navigateByUrl("/vh_form/" + id)
+
 
   }
 

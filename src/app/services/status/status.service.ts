@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
-import { VehicleDTO, Vehicle_statusDTO, Vehicle_status_form } from 'src/app/models/dto';
+import { Vehicle_statusDTO, Vehicle_status_form } from 'src/app/models/dto';
 
 @Injectable({
   providedIn: 'root'

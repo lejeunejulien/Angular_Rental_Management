@@ -204,10 +204,17 @@ update(index_front:number){
 }
 
  save(){
-  console.log('data is ', this.category_form)
+  console.log('data is ', this.category_form.value)
   this.__CategoryService.setCategory(this.selected)
   this.id_vh_properties=this._VHService.get_id()
-  this._router.navigate(['vh_form/id_vh_properties'])
+
+  this._router.routeReuseStrategy.shouldReuseRoute = () => {
+    return false;
+    }
+    this._router.onSameUrlNavigation = 'reload';
+
+  //this._router.navigateByUrl("/vh_form/" + this.id)
+  this._router.navigateByUrl("/vh_form/" + this.id_vh_properties)
  }
 
 

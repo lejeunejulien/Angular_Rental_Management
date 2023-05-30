@@ -175,7 +175,15 @@ export class StatusFormComponent {
     console.log(this.__StatusService.getStatus())
 
     this.id_vh_properties=this._VHService.get_id()
-    this._router.navigate(['vh_form/id_vh_properties'])
+
+    this._router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+      }
+      this._router.onSameUrlNavigation = 'reload';
+
+    //this._router.navigateByUrl("/vh_form/" + this.id)
+    this._router.navigateByUrl("/vh_form/" + this.id_vh_properties)
+
   }
 
 }
