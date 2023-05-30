@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookingService } from 'src/app/services/booking/booking.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -9,21 +11,31 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserFormComponent {
 
-  user : FormGroup = this._formBuilder.group({
-    last_name : ['',[Validators.required]],
-    first_name: ['',[Validators.required]],
-    username:['',[Validators.required]],
-    password:['',[Validators.required]]
-  })
+  user_form : FormGroup
 
-  constructor(private __UserService: UserService, private _formBuilder : FormBuilder ){}
+  constructor(private _BookingService : BookingService,
+    private _UserService : UserService,
+    private _formBuilder : FormBuilder,
+    private _router : Router,
+    private _activatedRoute : ActivatedRoute){
 
-  create_user(){
+
+    this.user_form = this._formBuilder.group({
+      last_name : ['',Validators.required],
+      first_name : ['',Validators.required],
+      username : ['',Validators.required],
+      password :['',Validators.required]
+      })
+    }
+
+  //////////////////////////////////
+
+  create(){
+    //this.__UserService.create(this.user_form.value).subscribe()
   }
 
-  update_user(){
-
+  save(){
+    console.log('data is ', this.user_form)
   }
-
 
 }

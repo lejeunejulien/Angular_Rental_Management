@@ -1,4 +1,3 @@
-<p>booking-form works!</p>
 
 <form [formGroup]="booking_form">
 
@@ -10,25 +9,16 @@
 
   <label>start date</label>
   <br>
-  <input type="date" formControlName="startDate">
+  <input type="datetime-local" formControlName="start_date">
 
   <br>
 
-  <label>start time</label>
-  <br>
-  <input type="time" formControlName="startTime">
 
   <br>
 
   <label>arrival date</label>
   <br>
-  <input type="date" formControlName="arrivalDate">
-
-  <br>
-
-  <label>arrival time</label>
-  <br>
-  <input type="time" formControlName="arrivalTime">
+  <input type="datetime-local" formControlName="arrival_date">
 
   <br>
 
@@ -44,8 +34,8 @@
 
   <br>
 
-  <button (click)="create_booking()">Create</button>
-  <button (click)="update_booking()">Update</button>
+  <button (click)="create()">Create</button>
+  <button (click)="save()">Save</button>
 
 
   </form>

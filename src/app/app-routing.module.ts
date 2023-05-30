@@ -11,7 +11,7 @@ import { CategoryVHComponent } from './CRUD/category/category-vh/category-vh.com
 import { CategoryFormComponent } from './CRUD/category/category-form/category-form.component';
 import { VHFormComponent } from './CRUD/vehicle_properties/vhform/vhform.component';
 import { UserFormComponent } from './CRUD/user/user-form/user-form.component';
-import { UserBookingComponent } from './CRUD/user/user-booking/user-booking.component';
+import { UserBookingComponent } from './CRUD/user/user-login/user-booking.component';
 import { SupplierVHComponent } from './CRUD/supplier/supplier-vh/supplier-vh.component';
 import { SupplierFormComponent } from './CRUD/supplier/supplier-form/supplier-form.component';
 import { StatusComponent } from './CRUD/status/status-vh/status.component';

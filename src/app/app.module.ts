@@ -22,7 +22,6 @@ import { PriceFormComponent } from './CRUD/price/price-form/price-form.component
 import { SupplierVHComponent } from './CRUD/supplier/supplier-vh/supplier-vh.component';
 import { SupplierFormComponent } from './CRUD/supplier/supplier-form/supplier-form.component';
 
-import { UserBookingComponent } from './CRUD/user/user-booking/user-booking.component';
 import { UserFormComponent } from './CRUD/user/user-form/user-form.component';
 import { BookingFormComponent } from './CRUD/booking/booking-form/booking-form.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +30,7 @@ import { StatusComponent } from './CRUD/status/status-vh/status.component';
 import { StatusFormComponent } from './CRUD/status/status-form/status-form.component';
 import { RouterModule } from '@angular/router';
 import { VhGeneralComponent } from './CRUD/vehicle_properties/vh-general/vh-general.component';
+import { UserLoginComponent } from './CRUD/user/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -54,11 +54,11 @@ import { VhGeneralComponent } from './CRUD/vehicle_properties/vh-general/vh-gene
     PriceFormComponent,
     SupplierVHComponent,
     SupplierFormComponent,
-    UserBookingComponent,
     UserFormComponent,
     StatusComponent,
     StatusFormComponent,
-    VhGeneralComponent
+    VhGeneralComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
